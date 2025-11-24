@@ -1,11 +1,11 @@
 services:
   - type: web
-    name: hukuk-ai
+    name: justicai
     env: docker
     plan: free
-    ipAllowList: [] # Herkese açık erişim
+    # ipAllowList satırı kaldırıldı, hata sebebi buydu.
     envVars:
       - key: OPENAI_API_KEY
-        sync: false # Güvenlik: Bunu Render panelinden elle gireceğiz
+        sync: false # Bunu Render panelinden elle gireceksin
       - key: FLASK_SECRET
-        generateValue: true # Render otomatik güvenli bir key üretsin
+        generateValue: true
