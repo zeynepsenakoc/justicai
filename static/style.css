@@ -1,0 +1,130 @@
+/* --- FONT VE RENK AYARLARI --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+    --primary: #0f172a;      /* Midnight Navy */
+    --secondary: #334155;    /* Slate Grey */
+    --accent: #d97706;       /* Dark Gold */
+    --accent-light: #fbbf24; /* Bright Gold */
+    --bg-color: #f8fafc;     /* Light Slate */
+    --card-bg: #ffffff;
+    --glass-border: rgba(255, 255, 255, 0.5);
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Inter', sans-serif;
+    color: var(--primary);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- BAŞLIKLAR VE LOGO --- */
+h1, h2, h3, h4, .navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+.navbar {
+    background-color: var(--primary) !important;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.1);
+    padding: 1rem 0;
+}
+
+.navbar-brand img {
+    height: 40px; /* Logo boyutu */
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.05);
+}
+
+/* --- KARTLAR (MODERN GLASS LOOK) --- */
+.card {
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 20px;
+    background: var(--card-bg);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 1.5rem;
+}
+
+/* --- BUTONLAR --- */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #1e293b 0%, var(--primary) 100%);
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(15, 23, 42, 0.2);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* --- FORM ELEMANLARI --- */
+.form-control, .form-select {
+    border-radius: 12px;
+    padding: 12px 15px;
+    border: 2px solid #e2e8f0;
+    background-color: #f8fafc;
+    transition: all 0.2s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.1);
+    background-color: #fff;
+}
+
+/* --- MOBİL UYUM (RESPONSIVE) --- */
+@media (max-width: 768px) {
+    .card-body { padding: 1.5rem !important; }
+    .display-4 { font-size: 2rem; }
+    .petition-preview { 
+        padding: 20px !important; 
+        font-size: 10pt !important; 
+        line-height: 1.6 !important;
+    }
+    .watermark { font-size: 3rem !important; }
+    
+    /* Menü mobilde daha rahat basılsın */
+    .navbar-nav .nav-link {
+        padding: 15px 0;
+        font-size: 1.1rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+}
+
+/* --- ANİMASYONLAR --- */
+.fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
