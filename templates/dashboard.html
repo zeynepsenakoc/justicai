@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dilekçelerim</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="/"><i class="fas fa-balance-scale"></i> Hukuk AI</a>
+    <div>
+        <span class="text-white me-3">Hoşgeldin, {{ current_user.username }}</span>
+        <a href="/" class="btn btn-light btn-sm"><i class="fas fa-plus"></i> Yeni Dilekçe</a>
+        <a href="/logout" class="btn btn-outline-light btn-sm ms-2">Çıkış</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-5">
+    <h2 class="mb-4"><i class="fas fa-history"></i> Geçmiş Dilekçelerim</h2>
+    
+    {% if petitions %}
+    <div class="row">
+        {% for p in petitions %}
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-white fw-bold text-primary">
+                    {{ p.category }}
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted small">{{ p.date_created.strftime('%d.%m.%Y %H:%M') }}</p>
+                    <p class="card-text">{{ p.content[:150] }}...</p>
+                    <a href="/sonuc?id={{ p.id }}" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-eye"></i> Görüntüle & İndir
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <div class="alert alert-info">Henüz hiç dilekçe oluşturmadınız.</div>
+    {% endif %}
+</div>
+
+</body>
+</html>

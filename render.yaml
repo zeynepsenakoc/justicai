@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: hukuk-ai
+    env: docker
+    plan: free
+    ipAllowList: [] # Herkese açık erişim
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false # Güvenlik: Bunu Render panelinden elle gireceğiz
+      - key: FLASK_SECRET
+        generateValue: true # Render otomatik güvenli bir key üretsin

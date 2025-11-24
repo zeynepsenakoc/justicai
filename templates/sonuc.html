@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dilekçe Hazır - Hukuk AI™</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.2.0/dist/signature_pad.umd.min.js"></script>
+  <style>
+    body { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh; transition: all 0.6s ease; }
+    [data-bs-theme="dark"] body { background: #0d1117; }
+    .card { border-radius: 25px; overflow: hidden; }
+    .petition-preview { 
+      background: white; 
+      padding: 60px; 
+      font-family: 'Times New Roman', serif; 
+      font-size: 13.5pt; 
+      line-height: 2.1; 
+      position: relative; 
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+    /* 1️⃣ YUMUŞAK HAREKETLİ WATERMARK */
+    .watermark {
+      position: absolute;
+      top: 50%;
+      left: -10%;
+      width: 120%;
+      text-align: center;
+      font-size: 7rem;
+      font-weight: 900;
+      color: rgba(220,53,69,0.07);
+      pointer-events: none;
+      animation: float 20s infinite linear;
+      letter-spacing: 15px;
+      transform: rotate(-30deg);
+      z-index: 1;
+    }
+    @keyframes float {
+      0% { transform: translateX(-20%) rotate(-30deg); }
+      100% { transform: translateX(120%) rotate(-30deg); }
+    }
+    /* 5️⃣ DARK MODE GOLD TEMA */
+    [data-bs-theme="dark"] .petition-preview { background: #1a1a1a; color: #e6e6e6; }
+    [data-bs-theme="dark"] .watermark { color: rgba(255,215,0,0.1); }
+    [data-bs-theme="dark"] .advice-box { background: rgba(255,215,0,0.15); border-color: gold; }
+    .advice-box { background: #fff8e1; border-left: 6px solid #ffc107; padding: 25px; border-radius: 12px; }
+    .signature-pad { border: 2px dashed #ddd; border-radius: 10px; background: #f9f9f9; }
+    [data-bs-theme="dark"] .signature-pad { background: #2d2d2d; border-color: #555; }
+    @media print {
+      body, .no-print { display: none !important; }
+      .petition-preview { box-shadow: none; padding: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Dark Mode + AI Avatar -->
+<div class="position-fixed top-0 end-0 p-3 no-print" style="z-index: 1080;">
+  <button id="themeToggle" class="btn btn-outline-secondary rounded-circle p-3 shadow mb-2 d-block">
+    <i class="fas fa-moon fa-lg"></i>
+  </button>
+  <div class="text-center">
+    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=HukukAI&backgroundColor=0d6efd" 
+         class="rounded-circle shadow" width="50" alt="AI">
+    <small class="d-block text-muted">HukukAI™</small>
+  </div>
+</div>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-11">
+
+      <div class="text-center mb-5">
+        <i class="fas fa-check-circle fa-7x text-success mb-4"></i>
+        <h1 class="display-4 fw-bold text-success">Dilekçeniz Hazır!</h1>
+        <p class="lead">Sayın <strong>{{ ad_soyad }}</strong></p>
+      </div>
+
+      <!-- 4️⃣ e-İmza Banner -->
+      <div class="alert alert-info text-center no-print shadow-sm">
+        <i class="fas fa-id-card fa-2x"></i> 
+        <strong>Resmi işlem için e-İmza ile imzalayın:</strong>
+        <a href="https://www.turkiye.gov.tr/e-imza-ile-islemler" target="_blank" class="btn btn-sm btn-outline-primary ms-3">
+          e-Devlet'e Git
+        </a>
+      </div>
+
+      <!-- 3️⃣ CANVAS CANLI PDF ÖNİZLEME -->
+      <div class="card shadow-lg no-print mb-4">
+        <div class="card-body text-center">
+          <button id="previewBtn" class="btn btn-primary btn-lg">
+            <i class="fas fa-eye"></i> Canlı Önizleme Göster
+          </button>
+        </div>
+      </div>
+
+      <!-- Ana Dilekçe Alanı -->
+      <div class="card shadow-lg position-relative overflow-hidden">
+        <div class="watermark">TASLAK • HUKUKAİ™ • AVUKAT ONAYI GEREKİR</div>
+        <div class="card-body p-0">
+          <div class="petition-preview">
+            <div class="text-center mb-5">
+              <h2 class="fw-bold display-5">{{ data.hitap_makam }}</h2>
+              <hr class="w-50 mx-auto border-2">
+            </div>
+
+            <div class="text-end mb-5 text-muted">
+              Tarih: {{ "now" | strftime("%d.%m.%Y") }}
+            </div>
+
+            {% autoescape false %}
+            {{ data.dilekce_metni | replace('\n', '<br>') }}
+            {% endautoescape %}
+
+            <!-- 2️⃣ DİJİTAL İMZA KUTUSU -->
+            <div class="text-end mt-5 pt-5 no-print">
+              <p class="mb-2">İmza:</p>
+              <canvas id="signaturePad" class="signature-pad" width="400" height="150"></canvas>
+              <button id="clearSig" class="btn btn-sm btn-outline-danger mt-2">Temizle</button>
+            </div>
+
+            <div class="text-end mt-5 pt-5 border-top">
+              <p class="mb-1">Saygılarımla,</p>
+              <p class="fw-bold fs-4">{{ ad_soyad }}</p>
+            </div>
+          </div>
+
+          <div class="p-5">
+            <div class="advice-box">
+              <h4 class="text-warning mb-3"><i class="fas fa-lightbulb"></i> Yapay Zekâ Hukuki Önerileri</h4>
+              {% autoescape false %}
+              {{ data.hukuki_oneriler | replace('\n', '<br>') }}
+              {% endautoescape %}
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer text-center bg-light no-print">
+          <a href="/pdf" class="btn btn-success btn-lg me-3">PDF İndir</a>
+          <button onclick="window.print()" class="btn btn-outline-secondary btn-lg">Yazdır</button>
+          <a href="/" class="btn btn-outline-primary btn-lg ms-3">Yeni Dilekçe</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.2.0/dist/signature_pad.umd.min.js"></script>
+<script>
+  // Dark Mode + Gold Tema
+  const toggle = document.getElementById('themeToggle');
+  toggle.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+    document.documentElement.setAttribute('data-bs-theme', isDark ? 'light' : 'dark');
+    toggle.innerHTML = isDark ? '<i class="fas fa-sun fa-lg"></i>' : '<i class="fas fa-moon fa-lg"></i>';
+  });
+
+  // Dijital İmza
+  const canvas = document.getElementById('signaturePad');
+  const signaturePad = new SignaturePad(canvas);
+  document.getElementById('clearSig').addEventListener('click', () => signaturePad.clear());
+
+  // Canvas önizleme (basit demo)
+  document.getElementById('previewBtn').addEventListener('click', () => {
+    alert("Canlı PDF önizleme aktif! (Gerçek uygulamada pdf.js ile yapılır)");
+  });
+</script>
+</body>
+</html>

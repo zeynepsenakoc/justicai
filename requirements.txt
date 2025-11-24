@@ -1,0 +1,12 @@
+Flask
+flask-login
+flask-sqlalchemy
+requests
+playwright
+pytesseract
+pdf2image
+filetype
+Pillow
+werkzeug
+python-dotenv
+gunicorn

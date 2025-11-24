@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Giriş / Kayıt - Hukuk AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh; }
+        .password-rules {
+            display: none;
+            position: absolute;
+            top: -140px;
+            left: 100%;
+            margin-left: 15px;
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid #ddd;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            color: #555;
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 100;
+            width: 260px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        #pwdInfoIcon:hover + #pwdInfoBox,
+        #pwdInfoBox:hover {
+            display: block;
+            opacity: 1;
+        }
+        .rule-item { margin: 4px 0; font-size: 13px; transition: all 0.2s; }
+        .rule-item i { margin-right: 5px; }
+        .rule-item.valid { color: #198754; text-decoration: line-through; opacity: 0.7; }
+        .rule-item.invalid { color: #dc3545; }
+        #pwdStrengthBar { transition: width 0.4s ease, background-color 0.4s ease; height: 6px; border-radius: 3px; }
+        .nav-tabs .nav-link.active { font-weight: bold; color: #0d6efd; border-bottom: 3px solid #0d6efd; }
+    </style>
+</head>
+<body class="d-flex align-items-center py-5">
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="text-center mb-4">
+                <h1 class="fw-bold text-primary"><i class="fas fa-balance-scale"></i> Hukuk AI</h1>
+                <p class="text-muted">Yapay Zeka Destekli Hukuk Asistanı</p>
+            </div>
+
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-body p-4">
+                    
+                    <!-- Flask Flash Mesajları -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                        {% for category, message in messages %}
+                          <div class="alert alert-{{ category }} alert-dismissible fade show">
+                              {{ message }}
+                              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                    {% endwith %}
+
+                    <!-- Tab Başlıkları -->
+                    <ul class="nav nav-tabs nav-fill justify-content-center mb-4" id="authTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link {{ 'active' if active_tab == 'login' else '' }}" id="login-tab" data-bs-toggle="tab" data-bs-target="#loginTab" type="button" role="tab">
+                                <i class="bi bi-box-arrow-in-right"></i> Giriş Yap
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link {{ 'active' if active_tab == 'register' else '' }}" id="register-tab" data-bs-toggle="tab" data-bs-target="#registerTab" type="button" role="tab">
+                                <i class="bi bi-person-plus"></i> Kayıt Ol
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="authTabContent">
+                        
+                        <!-- LOGIN FORM -->
+                        <div class="tab-pane fade {{ 'show active' if active_tab == 'login' else '' }}" id="loginTab" role="tabpanel">
+                            <form action="{{ url_for('login') }}" method="post" novalidate>
+                                <div class="mb-3">
+                                    <label class="form-label">Kullanıcı Adı</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+                                        <input type="text" class="form-control" name="username" required placeholder="Kullanıcı adınız">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">Şifre</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="bi bi-key"></i></span>
+                                        <input type="password" class="form-control" name="password" id="loginPassword" required placeholder="••••••••">
+                                        <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('loginPassword', this)">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary w-100 py-2 shadow-sm">
+                                    Giriş Yap <i class="bi bi-arrow-right"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- REGISTER FORM -->
+                        <div class="tab-pane fade {{ 'show active' if active_tab == 'register' else '' }}" id="registerTab" role="tabpanel">
+                            <form action="{{ url_for('register') }}" method="post" id="registerForm" novalidate>
+                                <div class="mb-3">
+                                    <label class="form-label">Kullanıcı Adı Belirle</label>
+                                    <input type="text" class="form-control" name="username" id="regUsername" required placeholder="Örn: ahmet.yilmaz">
+                                </div>
+
+                                <div class="mb-3 position-relative">
+                                    <label class="form-label d-flex justify-content-between">
+                                        Şifre Belirle
+                                        <i class="bi bi-info-circle-fill text-primary" id="pwdInfoIcon" style="cursor: pointer;"></i>
+                                        
+                                        <!-- Şifre Kuralları Kutusu -->
+                                        <div id="pwdInfoBox" class="password-rules">
+                                            <h6 class="fw-bold mb-2 text-dark">Şifre Gereksinimleri</h6>
+                                            <ul class="list-unstyled mb-0">
+                                                <li id="rule-length" class="rule-item"><i class="bi bi-circle"></i> En az 8 karakter</li>
+                                                <li id="rule-upper" class="rule-item"><i class="bi bi-circle"></i> Büyük harf (A-Z)</li>
+                                                <li id="rule-lower" class="rule-item"><i class="bi bi-circle"></i> Küçük harf (a-z)</li>
+                                                <li id="rule-digit" class="rule-item"><i class="bi bi-circle"></i> Rakam (0-9)</li>
+                                                <li id="rule-special" class="rule-item"><i class="bi bi-circle"></i> Özel karakter (!@#$)</li>
+                                            </ul>
+                                        </div>
+                                    </label>
+                                    
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" name="password" id="regPassword" required placeholder="Güçlü bir şifre...">
+                                        <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('regPassword', this)">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Güç Barı -->
+                                    <div class="progress mt-2 bg-light">
+                                        <div id="pwdStrengthBar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+
+                                <button id="regSubmit" type="submit" class="btn btn-success w-100 py-2 shadow-sm" disabled>
+                                    <i class="bi bi-check-circle"></i> Kaydı Tamamla
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer bg-light text-center py-3">
+                    <small class="text-muted">© 2025 Hukuk AI Mühendislik Projesi</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Şifre Göster/Gizle
+    function togglePassword(inputId, btn) {
+        const input = document.getElementById(inputId);
+        const icon = btn.querySelector("i");
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.replace("bi-eye", "bi-eye-slash");
+        } else {
+            input.type = "password";
+            icon.classList.replace("bi-eye-slash", "bi-eye");
+        }
+    }
+
+    // Şifre Güç Kontrolü (Client-Side Logic)
+    const pwdInput = document.getElementById("regPassword");
+    const submitBtn = document.getElementById("regSubmit");
+    const bar = document.getElementById("pwdStrengthBar");
+
+    function setRuleStatus(id, valid) {
+        const el = document.getElementById(id);
+        const icon = el.querySelector("i");
+        if (valid) {
+            el.classList.add("valid");
+            el.classList.remove("invalid");
+            icon.classList.replace("bi-circle", "bi-check-circle-fill");
+        } else {
+            el.classList.remove("valid");
+            el.classList.add("invalid");
+            icon.classList.replace("bi-check-circle-fill", "bi-circle");
+        }
+    }
+
+    pwdInput.addEventListener("input", function() {
+        const val = pwdInput.value;
+        
+        // Kurallar
+        const hasLen = val.length >= 8;
+        const hasUp = /[A-Z]/.test(val);
+        const hasLow = /[a-z]/.test(val);
+        const hasDig = /[0-9]/.test(val);
+        const hasSpec = /[!@#$%^&*(),.?":{}|<>]/.test(val);
+
+        // UI Güncelleme
+        setRuleStatus("rule-length", hasLen);
+        setRuleStatus("rule-upper", hasUp);
+        setRuleStatus("rule-lower", hasLow);
+        setRuleStatus("rule-digit", hasDig);
+        setRuleStatus("rule-special", hasSpec);
+
+        // Skor Hesapla
+        let score = 0;
+        if(hasLen) score++;
+        if(hasUp) score++;
+        if(hasLow) score++;
+        if(hasDig) score++;
+        if(hasSpec) score++;
+
+        // Bar Rengi ve Uzunluğu
+        const width = (score / 5) * 100;
+        bar.style.width = width + "%";
+        
+        if(score <= 2) bar.className = "progress-bar bg-danger";
+        else if(score <= 4) bar.className = "progress-bar bg-warning";
+        else bar.className = "progress-bar bg-success";
+
+        // Buton Aktifliği
+        submitBtn.disabled = (score < 5);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,574 @@
+2025-11-18 18:44:40,412 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-18 18:44:40,412 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-18 18:45:13,056 - INFO - 127.0.0.1 - - [18/Nov/2025 18:45:13] "GET / HTTP/1.1" 200 -
+2025-11-18 18:45:13,350 - INFO - 127.0.0.1 - - [18/Nov/2025 18:45:13] "GET / HTTP/1.1" 200 -
+2025-11-18 18:45:13,797 - INFO - 127.0.0.1 - - [18/Nov/2025 18:45:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-11-18 18:45:32,163 - ERROR - Exception on / [POST]
+Traceback (most recent call last):
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/app.py", line 100, in index
+    prompt = BASE_PROMPT.format(
+             ^^^^^^^^^^^^^^^^^^^
+KeyError: '\n  "status"'
+2025-11-18 18:45:32,166 - INFO - 127.0.0.1 - - [18/Nov/2025 18:45:32] "[35m[1mPOST / HTTP/1.1[0m" 500 -
+2025-11-18 18:49:27,737 - ERROR - Exception on / [POST]
+Traceback (most recent call last):
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/app.py", line 100, in index
+    prompt = BASE_PROMPT.format(
+             ^^^^^^^^^^^^^^^^^^^
+KeyError: '\n  "status"'
+2025-11-18 18:49:27,739 - INFO - 127.0.0.1 - - [18/Nov/2025 18:49:27] "[35m[1mPOST / HTTP/1.1[0m" 500 -
+2025-11-18 19:02:18,493 - INFO - 127.0.0.1 - - [18/Nov/2025 19:02:18] "GET / HTTP/1.1" 200 -
+2025-11-18 19:03:59,963 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-18 19:03:59,963 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-18 19:04:09,312 - INFO - 127.0.0.1 - - [18/Nov/2025 19:04:09] "GET / HTTP/1.1" 200 -
+2025-11-18 19:04:24,883 - INFO - Yeni istek - Kategori: kira - Kullanıcı: sdsd
+2025-11-18 19:04:29,475 - INFO - LLM başarılı yanıt verdi
+2025-11-18 19:04:29,481 - INFO - 127.0.0.1 - - [18/Nov/2025 19:04:29] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-18 19:04:29,498 - INFO - 127.0.0.1 - - [18/Nov/2025 19:04:29] "[32mGET /sonuc HTTP/1.1[0m" 302 -
+2025-11-18 19:04:29,514 - INFO - 127.0.0.1 - - [18/Nov/2025 19:04:29] "GET / HTTP/1.1" 200 -
+2025-11-18 19:11:02,190 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-18 19:11:02,190 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-18 19:11:42,091 - INFO - 127.0.0.1 - - [18/Nov/2025 19:11:42] "GET / HTTP/1.1" 200 -
+2025-11-18 19:12:18,361 - INFO - Yeni istek - Kategori: kira - Kullanıcı: Zeynep Şenakoc
+2025-11-18 19:12:18,362 - INFO - 127.0.0.1 - - [18/Nov/2025 19:12:18] "POST / HTTP/1.1" 200 -
+2025-11-18 19:12:55,305 - INFO - Dilekçe başarıyla oluşturuldu
+2025-11-18 19:12:55,306 - INFO - 127.0.0.1 - - [18/Nov/2025 19:12:55] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-18 19:12:55,325 - ERROR - Exception on /sonuc [GET]
+Traceback (most recent call last):
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/app.py", line 206, in sonuc
+    return render_template("sonuc.html", data=data, ad_soyad=session.get("ad_soyad"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 771, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/zeynepsenakoc/dilekce_ai/templates/sonuc.html", line 109, in template
+    Tarih: {{ "now" | strftime("%d.%m.%Y") }}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.TemplateAssertionError: No filter named 'strftime'.
+2025-11-18 19:12:55,331 - INFO - 127.0.0.1 - - [18/Nov/2025 19:12:55] "[35m[1mGET /sonuc HTTP/1.1[0m" 500 -
+2025-11-18 19:15:18,956 - INFO - 127.0.0.1 - - [18/Nov/2025 19:15:18] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-18 19:15:18,967 - INFO - 127.0.0.1 - - [18/Nov/2025 19:15:18] "GET / HTTP/1.1" 200 -
+2025-11-18 19:16:07,299 - INFO - Yeni istek - Kategori: kira - Kullanıcı: Zeynep Şenakoc
+2025-11-18 19:16:07,301 - INFO - 127.0.0.1 - - [18/Nov/2025 19:16:07] "POST / HTTP/1.1" 200 -
+2025-11-18 19:16:23,413 - INFO - Dilekçe başarıyla oluşturuldu
+2025-11-18 19:16:23,415 - INFO - 127.0.0.1 - - [18/Nov/2025 19:16:23] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-18 19:16:23,448 - ERROR - Exception on /sonuc [GET]
+Traceback (most recent call last):
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/app.py", line 206, in sonuc
+    return render_template("sonuc.html", data=data, ad_soyad=session.get("ad_soyad"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 771, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/zeynepsenakoc/dilekce_ai/templates/sonuc.html", line 109, in template
+    Tarih: {{ "now" | strftime("%d.%m.%Y") }}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.TemplateAssertionError: No filter named 'strftime'.
+2025-11-18 19:16:23,453 - INFO - 127.0.0.1 - - [18/Nov/2025 19:16:23] "[35m[1mGET /sonuc HTTP/1.1[0m" 500 -
+2025-11-18 19:17:31,762 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-18 19:17:31,762 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-18 19:17:39,671 - ERROR - Exception on /sonuc [GET]
+Traceback (most recent call last):
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/app.py", line 206, in sonuc
+    return render_template("sonuc.html", data=data, ad_soyad=session.get("ad_soyad"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 771, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/zeynepsenakoc/dilekce_ai/templates/sonuc.html", line 109, in template
+    Tarih: {{ "now" | strftime("%d.%m.%Y") }}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.TemplateAssertionError: No filter named 'strftime'.
+2025-11-18 19:17:39,675 - INFO - 127.0.0.1 - - [18/Nov/2025 19:17:39] "[35m[1mGET /sonuc HTTP/1.1[0m" 500 -
+2025-11-18 19:17:45,695 - INFO - 127.0.0.1 - - [18/Nov/2025 19:17:45] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-18 19:17:45,720 - INFO - 127.0.0.1 - - [18/Nov/2025 19:17:45] "GET / HTTP/1.1" 200 -
+2025-11-18 19:20:02,380 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-18 19:20:02,380 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-18 19:20:08,362 - INFO - 127.0.0.1 - - [18/Nov/2025 19:20:08] "GET / HTTP/1.1" 200 -
+2025-11-18 19:20:59,063 - INFO - Yeni istek - Kategori: kira - Kullanıcı: Zeynep Şenakoc
+2025-11-18 19:20:59,065 - INFO - 127.0.0.1 - - [18/Nov/2025 19:20:59] "POST / HTTP/1.1" 200 -
+2025-11-18 19:21:17,754 - INFO - Dilekçe başarıyla oluşturuldu
+2025-11-18 19:21:17,755 - INFO - 127.0.0.1 - - [18/Nov/2025 19:21:17] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-18 19:21:17,809 - ERROR - Exception on /sonuc [GET]
+Traceback (most recent call last):
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/app.py", line 206, in sonuc
+    return render_template("sonuc.html", data=data, ad_soyad=session.get("ad_soyad"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 771, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/zeynepsenakoc/dilekce_ai/templates/sonuc.html", line 109, in template
+    Tarih: {{ "now" | strftime("%d.%m.%Y") }}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.TemplateAssertionError: No filter named 'strftime'.
+2025-11-18 19:21:17,815 - INFO - 127.0.0.1 - - [18/Nov/2025 19:21:17] "[35m[1mGET /sonuc HTTP/1.1[0m" 500 -
+2025-11-18 19:22:58,826 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-18 19:22:58,826 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-18 19:23:03,867 - INFO - 127.0.0.1 - - [18/Nov/2025 19:23:03] "GET /sonuc HTTP/1.1" 200 -
+2025-11-18 19:23:35,767 - ERROR - Exception on /pdf [GET]
+Traceback (most recent call last):
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/app.py", line 223, in pdf
+    tarih=datetime.now().strftime("%d.%m.%Y"),
+          ^^^^^^^^
+UnboundLocalError: cannot access local variable 'datetime' where it is not associated with a value
+2025-11-18 19:23:35,771 - INFO - 127.0.0.1 - - [18/Nov/2025 19:23:35] "[35m[1mGET /pdf HTTP/1.1[0m" 500 -
+2025-11-18 19:32:45,633 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-18 19:32:45,633 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-18 19:32:51,924 - INFO - 127.0.0.1 - - [18/Nov/2025 19:32:51] "GET /sonuc HTTP/1.1" 200 -
+2025-11-18 19:33:12,194 - INFO - 127.0.0.1 - - [18/Nov/2025 19:33:12] "GET / HTTP/1.1" 200 -
+2025-11-18 19:33:28,210 - INFO - Yeni istek - Kategori: trafik_cezasi - Kullanıcı: Zeynep sena koç
+2025-11-18 19:33:28,212 - INFO - 127.0.0.1 - - [18/Nov/2025 19:33:28] "POST / HTTP/1.1" 200 -
+2025-11-18 19:33:51,658 - INFO - Dilekçe başarıyla oluşturuldu
+2025-11-18 19:33:51,660 - INFO - 127.0.0.1 - - [18/Nov/2025 19:33:51] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-18 19:33:51,674 - INFO - 127.0.0.1 - - [18/Nov/2025 19:33:51] "GET /sonuc HTTP/1.1" 200 -
+2025-11-18 19:33:57,884 - ERROR - Exception on /pdf [GET]
+Traceback (most recent call last):
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zeynepsenakoc/dilekce_ai/app.py", line 219, in pdf
+    html = PETITION_HTML_TEMPLATE.format(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: '\n    font-family'
+2025-11-18 19:33:57,888 - INFO - 127.0.0.1 - - [18/Nov/2025 19:33:57] "[35m[1mGET /pdf HTTP/1.1[0m" 500 -
+2025-11-24 10:21:05,363 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-24 10:21:05,363 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-24 10:21:05,365 - INFO -  * Restarting with stat
+2025-11-24 10:21:05,725 - WARNING -  * Debugger is active!
+2025-11-24 10:21:05,733 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:21:18,219 - INFO - 127.0.0.1 - - [24/Nov/2025 10:21:18] "GET / HTTP/1.1" 200 -
+2025-11-24 10:23:18,464 - INFO - Dosya işleniyor: WhatsApp Image 2025-11-24 at 10.22.26.jpeg
+2025-11-24 10:23:18,931 - INFO - LLM İsteği Gönderiliyor. Kategori: trafik_cezasi
+2025-11-24 10:23:18,931 - ERROR - OPENAI_API_KEY bulunamadı!
+2025-11-24 10:23:18,932 - INFO - 127.0.0.1 - - [24/Nov/2025 10:23:18] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-24 10:23:18,944 - INFO - 127.0.0.1 - - [24/Nov/2025 10:23:18] "[32mGET /sonuc HTTP/1.1[0m" 302 -
+2025-11-24 10:23:18,955 - INFO - 127.0.0.1 - - [24/Nov/2025 10:23:18] "GET / HTTP/1.1" 200 -
+2025-11-24 10:28:49,980 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-24 10:28:49,980 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-24 10:28:49,981 - INFO -  * Restarting with stat
+2025-11-24 10:28:50,268 - WARNING -  * Debugger is active!
+2025-11-24 10:28:50,273 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:29:10,329 - INFO - 127.0.0.1 - - [24/Nov/2025 10:29:10] "GET / HTTP/1.1" 200 -
+2025-11-24 10:29:10,546 - INFO - 127.0.0.1 - - [24/Nov/2025 10:29:10] "GET / HTTP/1.1" 200 -
+2025-11-24 10:30:47,464 - INFO - Dosya işleniyor: WhatsApp Image 2025-11-24 at 10.22.26.jpeg
+2025-11-24 10:30:47,856 - INFO - LLM İsteği Gönderiliyor. Kategori: trafik_cezasi
+2025-11-24 10:30:54,055 - INFO - 127.0.0.1 - - [24/Nov/2025 10:30:54] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-24 10:30:54,080 - INFO - 127.0.0.1 - - [24/Nov/2025 10:30:54] "GET /sonuc HTTP/1.1" 200 -
+2025-11-24 10:31:07,271 - INFO - 127.0.0.1 - - [24/Nov/2025 10:31:07] "[35m[1mGET /pdf HTTP/1.1[0m" 500 -
+2025-11-24 10:31:07,283 - INFO - 127.0.0.1 - - [24/Nov/2025 10:31:07] "GET /pdf?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-11-24 10:31:07,284 - INFO - 127.0.0.1 - - [24/Nov/2025 10:31:07] "GET /pdf?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-11-24 10:31:07,287 - INFO - 127.0.0.1 - - [24/Nov/2025 10:31:07] "GET /pdf?__debugger__=yes&cmd=resource&f=console.png&s=wqimUOamlhPifUwEAH5S HTTP/1.1" 200 -
+2025-11-24 10:31:07,326 - INFO - 127.0.0.1 - - [24/Nov/2025 10:31:07] "GET /pdf?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-11-24 10:31:32,173 - INFO - 127.0.0.1 - - [24/Nov/2025 10:31:32] "GET /sonuc HTTP/1.1" 200 -
+2025-11-24 10:35:50,763 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/config.py', reloading
+2025-11-24 10:35:50,876 - INFO -  * Restarting with stat
+2025-11-24 10:35:51,426 - WARNING -  * Debugger is active!
+2025-11-24 10:35:51,437 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:36:59,994 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/config.py', reloading
+2025-11-24 10:37:00,064 - INFO -  * Restarting with stat
+2025-11-24 10:37:00,507 - WARNING -  * Debugger is active!
+2025-11-24 10:37:00,512 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:37:02,539 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/config.py', reloading
+2025-11-24 10:37:02,599 - INFO -  * Restarting with stat
+2025-11-24 10:37:02,900 - WARNING -  * Debugger is active!
+2025-11-24 10:37:02,904 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:38:12,460 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/config.py', reloading
+2025-11-24 10:38:12,584 - INFO -  * Restarting with stat
+2025-11-24 10:38:13,106 - WARNING -  * Debugger is active!
+2025-11-24 10:38:13,112 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:38:28,619 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-24 10:38:28,619 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-24 10:38:28,619 - INFO -  * Restarting with stat
+2025-11-24 10:38:28,905 - WARNING -  * Debugger is active!
+2025-11-24 10:38:28,908 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:38:45,876 - INFO - 127.0.0.1 - - [24/Nov/2025 10:38:45] "GET / HTTP/1.1" 200 -
+2025-11-24 10:39:14,879 - INFO - Dosya işleniyor: WhatsApp Image 2025-11-24 at 10.22.26.jpeg
+2025-11-24 10:39:15,270 - INFO - LLM İsteği Gönderiliyor. Kategori: trafik_cezasi
+2025-11-24 10:39:21,046 - INFO - 127.0.0.1 - - [24/Nov/2025 10:39:21] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-24 10:39:21,065 - INFO - 127.0.0.1 - - [24/Nov/2025 10:39:21] "GET /sonuc HTTP/1.1" 200 -
+2025-11-24 10:39:34,111 - INFO - 127.0.0.1 - - [24/Nov/2025 10:39:34] "GET /pdf HTTP/1.1" 200 -
+2025-11-24 10:39:34,116 - INFO - 127.0.0.1 - - [24/Nov/2025 10:39:34] "[36mGET /pdf?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-11-24 10:39:34,117 - INFO - 127.0.0.1 - - [24/Nov/2025 10:39:34] "[36mGET /pdf?__debugger__=yes&cmd=resource&f=console.png&s=wqimUOamlhPifUwEAH5S HTTP/1.1[0m" 304 -
+2025-11-24 10:39:34,118 - INFO - 127.0.0.1 - - [24/Nov/2025 10:39:34] "[36mGET /pdf?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-11-24 10:39:34,118 - INFO - 127.0.0.1 - - [24/Nov/2025 10:39:34] "[36mGET /pdf?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-11-24 10:42:24,801 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/app.py', reloading
+2025-11-24 10:42:24,882 - INFO -  * Restarting with stat
+2025-11-24 10:42:25,329 - WARNING -  * Debugger is active!
+2025-11-24 10:42:25,334 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:44:16,205 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/app.py', reloading
+2025-11-24 10:44:16,310 - INFO -  * Restarting with stat
+2025-11-24 10:44:16,841 - WARNING -  * Debugger is active!
+2025-11-24 10:44:16,846 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:44:24,158 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-24 10:44:24,158 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-24 10:44:24,159 - INFO -  * Restarting with stat
+2025-11-24 10:44:24,455 - WARNING -  * Debugger is active!
+2025-11-24 10:44:24,459 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:44:33,782 - INFO - OCR Başarılı
+2025-11-24 10:44:38,598 - INFO - 127.0.0.1 - - [24/Nov/2025 10:44:38] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-24 10:44:38,618 - WARNING - Veri boş geldi, Mock Data devreye sokuluyor.
+2025-11-24 10:44:38,627 - INFO - 127.0.0.1 - - [24/Nov/2025 10:44:38] "GET /sonuc HTTP/1.1" 200 -
+2025-11-24 10:45:02,490 - INFO - 127.0.0.1 - - [24/Nov/2025 10:45:02] "GET /pdf HTTP/1.1" 200 -
+2025-11-24 10:45:02,496 - INFO - 127.0.0.1 - - [24/Nov/2025 10:45:02] "[36mGET /pdf?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-11-24 10:45:02,496 - INFO - 127.0.0.1 - - [24/Nov/2025 10:45:02] "[36mGET /pdf?__debugger__=yes&cmd=resource&f=console.png&s=wqimUOamlhPifUwEAH5S HTTP/1.1[0m" 304 -
+2025-11-24 10:45:02,496 - INFO - 127.0.0.1 - - [24/Nov/2025 10:45:02] "[36mGET /pdf?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-11-24 10:45:02,497 - INFO - 127.0.0.1 - - [24/Nov/2025 10:45:02] "[36mGET /pdf?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-11-24 10:51:08,975 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/app.py', reloading
+2025-11-24 10:51:09,087 - INFO -  * Restarting with stat
+2025-11-24 10:51:09,612 - WARNING -  * Debugger is active!
+2025-11-24 10:51:09,617 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:51:22,725 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/app.py', reloading
+2025-11-24 10:51:22,812 - INFO -  * Restarting with stat
+2025-11-24 10:51:23,233 - WARNING -  * Debugger is active!
+2025-11-24 10:51:23,238 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:51:30,917 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-24 10:51:30,917 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-24 10:51:30,918 - INFO -  * Restarting with stat
+2025-11-24 10:51:31,219 - WARNING -  * Debugger is active!
+2025-11-24 10:51:31,227 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:51:43,634 - INFO - 127.0.0.1 - - [24/Nov/2025 10:51:43] "GET /sonuc HTTP/1.1" 200 -
+2025-11-24 10:51:49,125 - INFO - OCR Başarılı
+2025-11-24 10:51:55,344 - INFO - 127.0.0.1 - - [24/Nov/2025 10:51:55] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-24 10:51:55,364 - WARNING - Veri boş geldi, Mock Data devreye sokuluyor.
+2025-11-24 10:51:55,365 - INFO - 127.0.0.1 - - [24/Nov/2025 10:51:55] "GET /sonuc HTTP/1.1" 200 -
+2025-11-24 10:52:23,628 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/app.py', reloading
+2025-11-24 10:52:23,717 - INFO -  * Restarting with stat
+2025-11-24 10:52:24,204 - WARNING -  * Debugger is active!
+2025-11-24 10:52:24,208 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:52:32,165 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-24 10:52:32,165 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-24 10:52:32,166 - INFO -  * Restarting with stat
+2025-11-24 10:52:32,451 - WARNING -  * Debugger is active!
+2025-11-24 10:52:32,455 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:52:37,042 - INFO - 127.0.0.1 - - [24/Nov/2025 10:52:37] "GET /sonuc HTTP/1.1" 200 -
+2025-11-24 10:52:46,070 - INFO - OCR OKUMA SONUCU (İlk 50 karakter): (ON Mi
+
+—.
+e nl n 'ADMINISTRATİIVE ROAD TRAFFIG FI...
+2025-11-24 10:52:53,410 - INFO - 127.0.0.1 - - [24/Nov/2025 10:52:53] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-24 10:52:54,525 - INFO - 127.0.0.1 - - [24/Nov/2025 10:52:54] "GET /sonuc HTTP/1.1" 200 -
+2025-11-24 10:54:54,639 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/app.py', reloading
+2025-11-24 10:54:54,707 - INFO -  * Restarting with stat
+2025-11-24 10:55:04,494 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-24 10:55:04,494 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-24 10:55:04,494 - INFO -  * Restarting with stat
+2025-11-24 10:55:04,791 - WARNING -  * Debugger is active!
+2025-11-24 10:55:04,797 - INFO -  * Debugger PIN: 677-422-099
+2025-11-24 10:55:16,708 - INFO - OCR Başarılı - Metin Okundu
+2025-11-24 10:55:21,684 - INFO - 127.0.0.1 - - [24/Nov/2025 10:55:21] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-24 10:55:22,220 - INFO - 127.0.0.1 - - [24/Nov/2025 10:55:22] "GET /sonuc HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 677-422-099
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:10:05] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:10:06] "GET /login?next=/ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:10:10] "GET /login?next=/ HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:10:12] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:10:24] "[32mPOST /register HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:10:24] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:10:24] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:10:25] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:10:29] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:10:29] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:10:42] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:10:44] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:11:17] "GET / HTTP/1.1" 200 -
+2025-11-24 11:23:50,548 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-24 11:23:50,548 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-24 11:23:50,548 - INFO -  * Restarting with stat
+2025-11-24 11:23:50,762 - WARNING -  * Debugger is active!
+2025-11-24 11:23:50,768 - INFO -  * Debugger PIN: 815-064-867
+2025-11-24 11:24:06,198 - INFO - 127.0.0.1 - - [24/Nov/2025 11:24:06] "GET / HTTP/1.1" 200 -
+2025-11-24 11:24:08,888 - INFO - 127.0.0.1 - - [24/Nov/2025 11:24:08] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-11-24 11:24:08,909 - INFO - 127.0.0.1 - - [24/Nov/2025 11:24:08] "GET /auth HTTP/1.1" 200 -
+2025-11-24 11:24:44,369 - INFO - 127.0.0.1 - - [24/Nov/2025 11:24:44] "POST /register HTTP/1.1" 200 -
+2025-11-24 11:24:48,775 - INFO - 127.0.0.1 - - [24/Nov/2025 11:24:48] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-11-24 11:24:48,781 - INFO - 127.0.0.1 - - [24/Nov/2025 11:24:48] "GET / HTTP/1.1" 200 -
+2025-11-24 11:25:28,802 - INFO - OCR Başarılı
+2025-11-24 11:25:36,736 - INFO - 127.0.0.1 - - [24/Nov/2025 11:25:36] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-24 11:25:37,286 - INFO - 127.0.0.1 - - [24/Nov/2025 11:25:37] "[35m[1mGET /sonuc HTTP/1.1[0m" 500 -
+2025-11-24 11:25:37,307 - INFO - 127.0.0.1 - - [24/Nov/2025 11:25:37] "GET /sonuc?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-11-24 11:25:37,307 - INFO - 127.0.0.1 - - [24/Nov/2025 11:25:37] "GET /sonuc?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-11-24 11:25:37,313 - INFO - 127.0.0.1 - - [24/Nov/2025 11:25:37] "GET /sonuc?__debugger__=yes&cmd=resource&f=console.png&s=h2KhwJIxb4W1k6c9E2VG HTTP/1.1" 200 -
+2025-11-24 11:25:37,361 - INFO - 127.0.0.1 - - [24/Nov/2025 11:25:37] "GET /sonuc?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-11-24 11:26:54,075 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/app.py', reloading
+2025-11-24 11:26:54,142 - INFO -  * Restarting with stat
+2025-11-24 11:26:54,481 - WARNING -  * Debugger is active!
+2025-11-24 11:26:54,487 - INFO -  * Debugger PIN: 815-064-867
+2025-11-24 11:27:00,852 - INFO - 127.0.0.1 - - [24/Nov/2025 11:27:00] "GET /sonuc HTTP/1.1" 200 -
+2025-11-24 11:46:45,051 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/app.py', reloading
+2025-11-24 11:46:45,149 - INFO -  * Restarting with stat
+2025-11-24 11:46:45,527 - WARNING -  * Debugger is active!
+2025-11-24 11:46:45,533 - INFO -  * Debugger PIN: 815-064-867
+2025-11-24 11:46:59,004 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-11-24 11:46:59,004 - INFO - [33mPress CTRL+C to quit[0m
+2025-11-24 11:46:59,004 - INFO -  * Restarting with stat
+2025-11-24 11:46:59,204 - WARNING -  * Debugger is active!
+2025-11-24 11:46:59,208 - INFO -  * Debugger PIN: 815-064-867
+2025-11-24 11:47:13,239 - INFO - 127.0.0.1 - - [24/Nov/2025 11:47:13] "GET / HTTP/1.1" 200 -
+2025-11-24 11:47:17,776 - INFO - 127.0.0.1 - - [24/Nov/2025 11:47:17] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-11-24 11:47:17,795 - INFO - 127.0.0.1 - - [24/Nov/2025 11:47:17] "GET /auth HTTP/1.1" 200 -
+2025-11-24 11:47:26,730 - INFO - 127.0.0.1 - - [24/Nov/2025 11:47:26] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-11-24 11:47:26,737 - INFO - 127.0.0.1 - - [24/Nov/2025 11:47:26] "GET / HTTP/1.1" 200 -
+2025-11-24 11:47:29,649 - INFO - 127.0.0.1 - - [24/Nov/2025 11:47:29] "GET /dashboard HTTP/1.1" 200 -
+2025-11-24 11:47:31,178 - INFO - 127.0.0.1 - - [24/Nov/2025 11:47:31] "GET / HTTP/1.1" 200 -
+2025-11-24 11:47:50,105 - INFO - OCR Başarılı
+2025-11-24 11:47:56,509 - INFO - 127.0.0.1 - - [24/Nov/2025 11:47:56] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-11-24 11:47:57,046 - INFO - 127.0.0.1 - - [24/Nov/2025 11:47:57] "GET /sonuc HTTP/1.1" 200 -
+2025-11-24 11:48:08,666 - INFO - 127.0.0.1 - - [24/Nov/2025 11:48:08] "GET / HTTP/1.1" 200 -
+2025-11-24 11:48:10,519 - INFO - 127.0.0.1 - - [24/Nov/2025 11:48:10] "GET /dashboard HTTP/1.1" 200 -
+2025-11-24 11:48:12,415 - INFO - 127.0.0.1 - - [24/Nov/2025 11:48:12] "GET /dashboard HTTP/1.1" 200 -
+2025-11-24 11:56:36,678 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/knowledge_base.py', reloading
+2025-11-24 11:56:36,789 - INFO -  * Restarting with stat
+2025-11-24 11:56:37,174 - WARNING -  * Debugger is active!
+2025-11-24 11:56:37,180 - INFO -  * Debugger PIN: 815-064-867
+2025-11-24 11:56:59,437 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/logic_services.py', reloading
+2025-11-24 11:56:59,491 - INFO -  * Restarting with stat
+2025-11-24 11:56:59,798 - WARNING -  * Debugger is active!
+2025-11-24 11:56:59,803 - INFO -  * Debugger PIN: 815-064-867
+2025-11-24 11:57:26,130 - INFO -  * Detected change in '/Users/zeynepsenakoc/dilekce_ai/app.py', reloading
+2025-11-24 11:57:26,183 - INFO -  * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 815-064-867
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 815-064-867
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:58:15] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:58:21] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:58:21] "GET /auth HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:58:23] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:58:23] "GET / HTTP/1.1" 200 -
+INFO:__main__:RULES: Herhangi bir usul engeli (süre/miktar) tespit edilmemiştir.
+INFO:__main__:RAG: 6502 SAYILI TÜKETİCİNİN KORUNMASI HAKKINDA KANUN
+ ...
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:58:48] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:58:49] "GET /sonuc HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 11:59:46] "GET / HTTP/1.1" 200 -
+INFO:__main__:RULES: ⚠️ DİKKAT: Tespit edilen tutar (150000.0 TL), 2024 yılı Hakem Heyeti sınırı olan 104.000 TL'yi aşmaktadır. Bu nedenle Tüketici Mahkemesi'ne başvurmalısınız (Arabuluculuk şartı vardır).
+INFO:__main__:RAG: 6502 SAYILI TÜKETİCİNİN KORUNMASI HAKKINDA KANUN
+ ...
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 12:00:08] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 12:00:09] "GET /sonuc HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 815-064-867
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:38:15] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:38:18] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:38:20] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:38:20] "GET /auth HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:38:27] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:38:27] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:39:00] "POST / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:39:38] "POST / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:40:13] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:40:13] "GET /sonuc HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:40:51] "POST / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:43:03] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:43:03] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:43:03] "GET /auth HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:43:19] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:43:19] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:44:02] "POST / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:44:02] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:44:02] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:44:02] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:44:30] "[32mPOST / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:44:30] "GET /sonuc HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:44:39] "GET /pdf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:44:39] "[36mGET /pdf?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:44:39] "[36mGET /pdf?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:44:39] "[36mGET /pdf?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:44:39] "[36mGET /pdf?__debugger__=yes&cmd=resource&f=console.png&s=wqimUOamlhPifUwEAH5S HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:45:00] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:45:02] "GET /dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Nov/2025 13:47:00] "GET /sonuc?id=1 HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/zeynepsenakoc/dilekce_ai/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 815-064-867
+INFO:werkzeug: * Detected change in '/Users/zeynepsenakoc/dilekce_ai/tests.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 815-064-867

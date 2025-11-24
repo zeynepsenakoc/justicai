@@ -1,0 +1,89 @@
+id: tuketici_ayipli_mal_tanim
+kategori: tuketici_haklari
+baslik: 6502 SAYILI TÜKETİCİNİN KORUNMASI HAKKINDA KANUN (Madde 8 - Ayıplı Mal)
+icerik: Ayıplı mal, tüketiciye teslimi anında, taraflarca kararlaştırılmış olan örnek ya da modele uygun olmaması ya da objektif olarak sahip olması gereken özellikleri taşımaması nedeniyle sözleşmeye aykırı olan maldır. Ambalajında, etiketinde, tanıtma ve kullanma kılavuzunda yer alan özelliklerden bir veya birden fazlasını taşımayan satıcı tarafından bildirilen özelliklere aykırı olan mallar da ayıplı kabul edilir.
+
+id: tuketici_secimlik_haklar
+kategori: tuketici_haklari
+baslik: 6502 SAYILI KANUN (Madde 11 - Tüketicinin Seçimlik Hakları)
+icerik: Malın ayıplı olduğunun anlaşılması durumunda tüketici; a) Satılanı geri vermeye hazır olduğunu bildirerek sözleşmeden dönme (Bedel İadesi), b) Satılanı alıkoyup ayıp oranında satış bedelinden indirim isteme, c) Aşırı bir masraf gerektirmediği takdirde, bütün masrafları satıcıya ait olmak üzere satılanın ücretsiz onarılmasını isteme, ç) İmkân varsa, satılanın ayıpsız bir misli ile değiştirilmesini isteme, haklarından birini kullanabilir. Satıcı, tüketicinin tercih ettiği bu talebi yerine getirmekle yükümlüdür.
+
+id: tuketici_cayma_hakki
+kategori: tuketici_haklari
+baslik: 6502 SAYILI KANUN (Mesafeli Sözleşmelerde Cayma Hakkı)
+icerik: Tüketici, on dört (14) gün içinde herhangi bir gerekçe göstermeksizin ve cezai şart ödemeksizin mesafeli satış sözleşmesinden cayma hakkına sahiptir. Cayma hakkının kullanıldığına dair bildirimin bu süre içinde satıcı veya sağlayıcıya yöneltilmiş olması yeterlidir.
+
+id: tuketici_hakem_heyeti_sinir
+kategori: tuketici_haklari
+baslik: 2024 YILI TÜKETİCİ HAKEM HEYETLERİ PARASAL SINIRLARI
+icerik: 2024 yılı için değeri 104.000 TL (yüz dört bin Türk Lirası) altında bulunan uyuşmazlıklarda İl veya İlçe Tüketici Hakem Heyetlerine başvuru zorunludur. Bu değerin üzerindeki uyuşmazlıklar için arabuluculuk şartı dava şartı olup, Tüketici Mahkemesine başvurulması gerekir.
+
+id: trafik_itiraz_sure
+kategori: trafik_cezasi
+baslik: 5326 SAYILI KABAHATLER KANUNU (Madde 27 - Başvuru Yolu)
+icerik: İdari para cezası ve mülkiyetin kamuya geçirilmesine ilişkin idari yaptırım kararına karşı, kararın tebliği veya tefhimi tarihinden itibaren en geç ON BEŞ (15) GÜN içinde, sulh ceza mahkemesine başvurulabilir. Bu süre içinde başvurunun yapılmamış olması halinde idari yaptırım kararı kesinleşir. Mücbir sebep hallerinde bu süre işlemeyebilir.
+
+id: trafik_fahri_mufettis
+kategori: trafik_cezasi
+baslik: KARAYOLLARI TRAFİK KANUNU (Fahri Trafik Müfettişliği)
+icerik: Fahri trafik müfettişlerince düzenlenen tutanaklara karşı itiraz yolu açıktır. Özellikle fotoğraf, video gibi somut delillere dayanmayan ve gıyapta (sürücünün yokluğunda) kesilen cezalarda, "şüphenin sanık lehine yorumlanması" ilkesi gereği cezanın iptali mümkündür.
+
+id: kira_tahliye_gereksinim
+kategori: kira
+baslik: 6098 SAYILI TÜRK BORÇLAR KANUNU (Madde 350 - Gereksinim Nedeniyle Tahliye)
+icerik: Kiraya veren, kiralananı kendisi, eşi, altsoyu, üstsoyu veya kanun gereği bakmakla yükümlü olduğu diğer kişiler için konut ya da işyeri gereksinimi sebebiyle kullanma zorunluluğu varsa, belirli süreli sözleşmelerde sürenin sonunda, belirsiz süreli sözleşmelerde fesih dönemine uyarak bir ay içinde açacağı dava ile sözleşmeyi sona erdirebilir.
+
+id: kira_temerrut
+kategori: kira
+baslik: 6098 SAYILI TÜRK BORÇLAR KANUNU (Madde 315 - Kiracının Temerrüdü)
+icerik: Kiracı, kiralananın tesliminden sonra muaccel olan kira bedelini veya yan gideri ödeme borcunu ifa etmezse, kiraya veren kiracıya yazılı olarak bir süre verip, bu sürede de ifa etmeme durumunda, sözleşmeyi feshedeceğini bildirebilir. Konut ve çatılı işyeri kiralarında bu süre en az otuz (30) gündür.
+
+id: kira_bedeli_artisi
+kategori: kira
+baslik: 6098 SAYILI TÜRK BORÇLAR KANUNU (Madde 344 - Kira Bedelinin Belirlenmesi)
+icerik: Tarafların yenilenen kira dönemlerinde uygulanacak kira bedeline ilişkin anlaşmaları, bir önceki kira yılında tüketici fiyat endeksindeki (TÜFE) oniki aylık ortalamalara göre değişim oranını geçmemek koşuluyla geçerlidir. Beş yıldan uzun süreli kiralamalarda ise kira tespit davası açılabilir.
+
+id: is_hukuku_fesih
+kategori: is_hukuku
+baslik: 4857 SAYILI İŞ KANUNU (Madde 25 - İşverenin Haklı Nedenle Feshi)
+icerik: Süresi belirli olsun veya olmasın işveren, işçinin ahlak ve iyi niyet kurallarına uymayan halleri (devamsızlık, hırsızlık, işverene hakaret vb.) ve benzeri durumlarda iş sözleşmesini sürenin bitiminden önce veya bildirim süresini beklemeksizin feshedebilir. Bu durumda kıdem tazminatı ödenmeyebilir.
+
+id: is_hukuku_ucret
+kategori: is_hukuku
+baslik: 4857 SAYILI İŞ KANUNU (Madde 32 ve 34 - Ücret)
+icerik: Ücret en geç ayda bir ödenir. Ücreti ödeme gününden itibaren yirmi gün içinde mücbir bir neden dışında ödenmeyen işçi, iş görme borcunu yerine getirmekten kaçınabilir. Bu işçilerin iş sözleşmeleri çalışmadıkları için feshedilemez ve yerine yeni işçi alınamaz.
+
+id: is_hukuku_fazla_mesai
+kategori: is_hukuku
+baslik: 4857 SAYILI İŞ KANUNU (Madde 41 - Fazla Çalışma Ücreti)
+icerik: Fazla çalışma, Kanunda yazılı koşullar çerçevesinde, haftalık kırk beş saati aşan çalışmalardır. Her bir saat fazla çalışma için verilecek ücret normal çalışma ücretinin saat başına düşen miktarının yüzde elli yükseltilmesi suretiyle ödenir.
+
+id: bilisim_sucu_hakaret
+kategori: sosyal_medya
+baslik: 5237 SAYILI TÜRK CEZA KANUNU (Madde 125 - Hakaret)
+icerik: Bir kimseye onur, şeref ve saygınlığını rencide edebilecek nitelikte somut bir fiil veya olgu isnat eden veya sövmek suretiyle bir kimsenin onur, şeref ve saygınlığına saldıran kişi, üç aydan iki yıla kadar hapis veya adlî para cezası ile cezalandırılır. Suçun sesli, yazılı veya görüntülü bir iletiyle (sosyal medya vb.) işlenmesi halinde de aynı ceza verilir.
+
+id: ozel_hayat
+kategori: sosyal_medya
+baslik: 5237 SAYILI TÜRK CEZA KANUNU (Madde 134 - Özel Hayatın Gizliliği)
+icerik: Kişilerin özel hayatının gizliliğini ihlal eden kimse, bir yıldan üç yıla kadar hapis cezası ile cezalandırılır. Gizliliğin görüntü veya seslerin kayda alınması suretiyle ihlal edilmesi halinde, verilecek ceza bir kat artırılır.
+
+id: dolandiricilik_nitelikli
+kategori: dolandiricilik
+baslik: 5237 SAYILI TÜRK CEZA KANUNU (Madde 158 - Nitelikli Dolandırıcılık)
+icerik: Dolandırıcılık suçunun; bilişim sistemlerinin, banka veya kredi kurumlarının araç olarak kullanılması suretiyle işlenmesi halinde, üç yıldan on yıla kadar hapis ve beşbin güne kadar adlî para cezasına hükmolunur.
+
+id: banka_harcama_itirazi
+kategori: bankacilik
+baslik: 5411 SAYILI BANKACILIK KANUNU & BKM KURALLARI (Harcama İtirazı)
+icerik: Kart hamili, kendi iradesi dışında veya hatalı gerçekleşen işlemler için bankaya itirazda bulunabilir. Banka, itirazı uluslararası kart kuruluşlarının (Visa/Mastercard) kuralları çerçevesinde incelemekle yükümlüdür. İtiraz süresi genellikle işlemin dönem içi hareketlere yansıdığı tarihten itibaren başlar.
+
+id: kargo_sorumluluk
+kategori: kargo
+baslik: 6102 SAYILI TÜRK TİCARET KANUNU (Madde 875 - Taşıyıcının Sorumluluğu)
+icerik: Taşıyıcı (kargo firması), eşyanın taşınmak üzere teslim alınmasından teslim edilmesine kadar geçecek süre içinde, eşyanın zıyaından, hasarından veya teslimindeki gecikmeden doğan zarardan sorumludur.
+
+id: kargo_bildirim
+kategori: kargo
+baslik: 6102 SAYILI TÜRK TİCARET KANUNU (Madde 889 - Bildirim Süreleri)
+icerik: Eşyanın zıyaı veya hasarı teslim sırasında açıkça görülüyorsa, teslim anında; açıkça görülmüyorsa teslimden itibaren yedi (7) gün içinde taşıyıcıya bildirim yapılmalıdır. Aksi takdirde eşyanın sağlam teslim edildiği karine kabul edilir.
