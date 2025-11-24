@@ -598,3 +598,5 @@ INFO:werkzeug: * Detected change in '/Users/zeynepsenakoc/dilekce_ai/app.py', re
 INFO:werkzeug: * Restarting with stat
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 815-064-867
+INFO:werkzeug: * Detected change in '/Users/zeynepsenakoc/dilekce_ai/app.py', reloading
+INFO:werkzeug: * Restarting with stat
