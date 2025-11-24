@@ -2,37 +2,39 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Hukuk AI - Yönetici Paneli</title>
+    <title>Justica AI - Sistem Metrikleri</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Chart.js Kütüphanesi -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { background-color: #f8f9fa; }
         .card { border: none; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
         .card:hover { transform: translateY(-5px); }
-        .icon-box { font-size: 2.5rem; opacity: 0.8; }
+        .icon-box { font-size: 2rem; opacity: 0.8; }
+        .metric-value { font-size: 2.5rem; font-weight: bold; }
+        .metric-label { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
 <nav class="navbar navbar-dark bg-dark mb-5">
   <div class="container">
-    <span class="navbar-brand fw-bold">⚖️ Hukuk AI | Yönetim Paneli</span>
+    <span class="navbar-brand fw-bold"><i class="fas fa-chart-line"></i> Justica AI | Performans Paneli</span>
     <a href="/" class="btn btn-outline-light btn-sm">Siteye Dön</a>
   </div>
 </nav>
 
 <div class="container">
-    <!-- Özet Kartları -->
-    <div class="row mb-5">
+    <!-- 1. Satır: Kullanıcı ve İşlem Hacmi -->
+    <div class="row mb-4">
         <div class="col-md-6">
             <div class="card bg-primary text-white h-100">
                 <div class="card-body d-flex align-items-center justify-content-between">
                     <div>
-                        <h6 class="text-uppercase mb-2">Toplam Kullanıcı</h6>
-                        <h2 class="display-4 fw-bold mb-0">{{ total_users }}</h2>
+                        <h6 class="metric-label">Toplam Kullanıcı</h6>
+                        <div class="metric-value">{{ total_users }}</div>
                     </div>
-                    <div class="icon-box">👥</div>
+                    <div class="icon-box"><i class="fas fa-users"></i></div>
                 </div>
             </div>
         </div>
@@ -40,10 +42,41 @@
             <div class="card bg-success text-white h-100">
                 <div class="card-body d-flex align-items-center justify-content-between">
                     <div>
-                        <h6 class="text-uppercase mb-2">Oluşturulan Dilekçe</h6>
-                        <h2 class="display-4 fw-bold mb-0">{{ total_petitions }}</h2>
+                        <h6 class="metric-label">Oluşturulan Dilekçe</h6>
+                        <div class="metric-value">{{ total_petitions }}</div>
                     </div>
-                    <div class="icon-box">📄</div>
+                    <div class="icon-box"><i class="fas fa-file-alt"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Satır: PERFORMANS METRİKLERİ (YENİ!) -->
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="card bg-info text-white h-100">
+                <div class="card-body">
+                    <h6 class="metric-label">Ort. İşlem Süresi</h6>
+                    <div class="metric-value">{{ avg_time }} <span class="fs-6">sn</span></div>
+                    <small class="opacity-75">OCR + RAG + AI Analiz Süresi</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-warning text-dark h-100">
+                <div class="card-body">
+                    <h6 class="metric-label">Toplam Token</h6>
+                    <div class="metric-value">{{ total_tokens }}</div>
+                    <small class="opacity-75">LLM Girdi + Çıktı Hacmi</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-danger text-white h-100">
+                <div class="card-body">
+                    <h6 class="metric-label">Tahmini Maliyet</h6>
+                    <div class="metric-value">${{ total_cost }}</div>
+                    <small class="opacity-75">OpenAI API Harcaması</small>
                 </div>
             </div>
         </div>
@@ -51,29 +84,26 @@
 
     <!-- Grafik Alanı -->
     <div class="row justify-content-center">
-        <div class="col-lg-8">
+        <div class="col-lg-10">
             <div class="card">
                 <div class="card-header bg-white fw-bold py-3">
-                    📊 Kategori Bazlı Başvuru Dağılımı
+                    <i class="fas fa-chart-pie"></i> Kategori Bazlı Başvuru Dağılımı
                 </div>
                 <div class="card-body">
-                    <canvas id="petitionChart"></canvas>
+                    <canvas id="petitionChart" style="max-height: 400px;"></canvas>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- VERİ AKTARIM KATMANI (Linter Hatasını Çözen Kısım) -->
-<!-- Verileri HTML içinde JSON olarak saklıyoruz, böylece JS dosyası temiz kalıyor -->
+<!-- Veri Aktarımı -->
 <script id="chart-labels" type="application/json">{{ labels | tojson | safe }}</script>
 <script id="chart-data" type="application/json">{{ data | tojson | safe }}</script>
 
 <script>
-    // Verileri güvenli bir şekilde HTML'den çekiyoruz
     const labelsData = JSON.parse(document.getElementById('chart-labels').textContent);
     const chartData = JSON.parse(document.getElementById('chart-data').textContent);
-
     const ctx = document.getElementById('petitionChart').getContext('2d');
     new Chart(ctx, {
         type: 'bar', 
@@ -82,25 +112,16 @@
             datasets: [{
                 label: 'Başvuru Sayısı',
                 data: chartData,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.7)',
-                    'rgba(54, 162, 235, 0.7)',
-                    'rgba(255, 206, 86, 0.7)',
-                    'rgba(75, 192, 192, 0.7)',
-                    'rgba(153, 102, 255, 0.7)',
-                    'rgba(255, 159, 64, 0.7)'
-                ],
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
-            scales: {
-                y: { beginAtZero: true, ticks: { stepSize: 1 } }
-            }
+            scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
         }
     });
 </script>
-
 </body>
 </html>

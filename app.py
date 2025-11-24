@@ -1,10 +1,10 @@
-# app.py — ULTIMATE ENGINEERING BUILD (Auth + DB + OCR + AI + PDF + Admin)
+# app.py — ULTIMATE BUILD (Metrics + Admin + Auth + RAG)
 import os
 import json
 import logging
 from datetime import datetime
 import io
-import time
+import time # Süre ölçümü için
 
 from flask import Flask, render_template, request, session, redirect, url_for, flash, send_file
 import requests
@@ -12,7 +12,7 @@ from playwright.sync_api import sync_playwright
 from dotenv import load_dotenv
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from sqlalchemy import func # İstatistikler için gerekli
+from sqlalchemy import func 
 
 # MODÜLLER
 from config import BASE_PROMPT, CATEGORIES, PETITION_HTML_TEMPLATE
@@ -25,14 +25,13 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET", "bitirme2025_gizli_anahtar")
 
-# DB & LOGIN SETUP
+# DB AYARLARI
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "auth"
-login_manager.login_message_category = "warning"
 
 with app.app_context():
     db.create_all()
@@ -45,44 +44,34 @@ logging.basicConfig(level=logging.INFO, handlers=[logging.FileHandler("app.log")
 logger = logging.getLogger(__name__)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-# --- AKILLI SİMÜLASYON (INTERACTIVE FLOW) ---
+# --- MOCK DATA (METRİKLİ) ---
 def get_mock_response(user_text="", ocr_text="", rules_feedback="", rag_context=""):
     time.sleep(0.8)
-    total_len = len(str(user_text)) + len(str(ocr_text))
+    # Simülasyon olduğu için rastgele metrikler uyduruyoruz
+    mock_usage = {"total_tokens": 450, "processing_time": 0.85}
     
+    total_len = len(str(user_text)) + len(str(ocr_text))
     if total_len < 30:
-        return {
-            "status": "SORGU",
-            "questions": [
-                "Ürünü satın aldığınız tam tarih nedir?",
-                "Satıcı firma ile daha önce iletişime geçtiniz mi?",
-                "Elinizde fatura, fiş veya sözleşme var mı?",
-                "Tam olarak talebiniz nedir (Para iadesi, değişim, onarım)?"
-            ]
-        }
+        return {"status": "SORGU", "questions": ["Tarih?", "Tutar?"], "usage": mock_usage}
 
     return {
         "status": "DILEKCE_HAZIR",
         "hitap_makam": "İSTANBUL NÖBETÇİ TÜKETİCİ MAHKEMESİNE",
         "dilekce_metni": f"""KONU: Ayıplı Mal Nedeniyle Bedel İadesi Talebi.
-
-AÇIKLAMALAR:
-
-1. Müvekkil, (Sistem OCR ile tarihi buraya işler) tarihinde davalı firmadan hizmet/ürün satın almıştır.
-2. Ürün garanti süresi içerisinde arızalanmış olup, {rag_context[:50] if rag_context else "6502 Sayılı Kanun"} kapsamında ayıplı mal niteliğindedir.
-3. Sistemin yaptığı kural analizi sonucunda: {rules_feedback if rules_feedback else "Herhangi bir usul engeli tespit edilmemiştir."}
-
-HUKUKİ SEBEPLER:
-{rag_context[:300]}...
-
-SONUÇ VE İSTEM:
-Yukarıda arz ve izah edilen nedenlerle, ürün bedelinin yasal faiziyle birlikte iadesine karar verilmesini saygılarımla arz ve talep ederim.
-
-(NOT: Bu metin 'Simülasyon Modu' ile oluşturulmuştur. API Kredisi yüklendiğinde yapay zeka devreye girecektir.)""",
-        "hukuki_oneriler": f"• Sistem Uyarısı: {rules_feedback}\n• Bulunan Emsal Kanun: {rag_context[:50]}..."
+        
+        (Bu bir simülasyon çıktısıdır. API Kredisi bekleniyor.)
+        
+        OCR VERİSİ: {ocr_text[:100]}...
+        RAG ANALİZİ: {rag_context[:100]}...
+        """,
+        "hukuki_oneriler": f"• Sistem Uyarısı: {rules_feedback}",
+        "usage": mock_usage
     }
 
+# --- LLM ÇAĞRISI (ZAMAN VE MALİYET HESAPLI) ---
 def call_llm(prompt_context, user_text="", ocr_text="", rules="", rag="") -> dict:
+    start_time = time.time() # ⏱️ Kronometre Başla
+    
     if not OPENAI_API_KEY or "benim keyim" in OPENAI_API_KEY:
         return get_mock_response(user_text, ocr_text, rules, rag)
 
@@ -93,15 +82,29 @@ def call_llm(prompt_context, user_text="", ocr_text="", rules="", rag="") -> dic
         "temperature": 0.1,
         "response_format": {"type": "json_object"}
     }
+    
+    result = {}
+    tokens = 0
+    
     try:
         r = requests.post("https://api.openai.com/v1/chat/completions", headers={"Authorization": f"Bearer {OPENAI_API_KEY}"}, json=payload, timeout=60)
-        if r.status_code != 200: 
-            logger.error(f"API Hatası: {r.status_code}")
-            return get_mock_response(user_text, ocr_text, rules, rag)
-        return json.loads(r.json()["choices"][0]["message"]["content"])
+        if r.status_code != 200:
+            result = get_mock_response(user_text, ocr_text, rules, rag)
+        else:
+            response_json = r.json()
+            result = json.loads(response_json["choices"][0]["message"]["content"])
+            tokens = response_json.get("usage", {}).get("total_tokens", 0)
     except Exception as e:
         logger.error(f"LLM Hatası: {e}")
-        return get_mock_response(user_text, ocr_text, rules, rag)
+        result = get_mock_response(user_text, ocr_text, rules, rag)
+    
+    # Süre ve Token Bilgisini Sonuca Ekle
+    duration = round(time.time() - start_time, 2) # ⏱️ Kronometre Dur
+    result["usage"] = {
+        "total_tokens": tokens,
+        "processing_time": duration
+    }
+    return result
 
 def html_to_pdf_playwright(html_content: str) -> bytes:
     with sync_playwright() as p:
@@ -111,7 +114,6 @@ def html_to_pdf_playwright(html_content: str) -> bytes:
         return page.pdf(format="A4", margin={"top":"2.5cm","right":"2.5cm","bottom":"2.5cm","left":"2.5cm"})
 
 # --- ROTALAR ---
-
 @app.route("/auth", methods=["GET"])
 def auth():
     if current_user.is_authenticated: return redirect(url_for("index"))
@@ -154,21 +156,23 @@ def dashboard():
     user_petitions = Petition.query.filter_by(user_id=current_user.id).order_by(Petition.date_created.desc()).all()
     return render_template("dashboard.html", petitions=user_petitions)
 
-# --- YENİ EKLENEN: ADMIN PANELİ ROTASI ---
+# --- GÜNCELLENMİŞ ADMIN PANELİ (METRİKLERLE) ---
 @app.route("/admin")
 @login_required
 def admin_panel():
-    # Basit yetki kontrolü: Kullanıcı adı "admin" değilse içeri alma
     if current_user.username != "admin":
-        flash("Bu alana sadece yöneticiler girebilir.", "danger")
-        return redirect(url_for("dashboard"))
+        flash("Yetkisiz alan.", "danger"); return redirect(url_for("dashboard"))
     
-    # 1. Genel İstatistikler
     total_users = User.query.count()
     total_petitions = Petition.query.count()
     
-    # 2. Kategorilere Göre Başvuru Sayıları (SQL Group By)
+    # İstatistikler
     category_stats = db.session.query(Petition.category, func.count(Petition.id)).group_by(Petition.category).all()
+    
+    # Performans Metrikleri (Ortalama Süre ve Toplam Token)
+    avg_time = db.session.query(func.avg(Petition.processing_time)).scalar() or 0.0
+    total_tokens = db.session.query(func.sum(Petition.token_count)).scalar() or 0
+    total_cost = db.session.query(func.sum(Petition.cost_usd)).scalar() or 0.0
     
     labels = [c[0] for c in category_stats]
     data = [c[1] for c in category_stats]
@@ -176,9 +180,10 @@ def admin_panel():
     return render_template("admin.html", 
                            total_users=total_users, 
                            total_petitions=total_petitions,
-                           labels=labels,
-                           data=data)
-# -----------------------------------------
+                           labels=labels, data=data,
+                           avg_time=round(avg_time, 2),
+                           total_tokens=total_tokens,
+                           total_cost=round(total_cost, 5)) # Küçük para birimi
 
 @app.route("/", methods=["GET", "POST"])
 @login_required
@@ -186,7 +191,7 @@ def index():
     if request.method == "GET":
         session.pop('result', None)
         return render_template("index.html", categories=CATEGORIES, mode="initial", user=current_user)
-
+    
     step = request.form.get("step")
     if step == "answers": return cevap_ver()
     
@@ -194,9 +199,7 @@ def index():
     uploaded_file = request.files.get("dosya")
     if uploaded_file and uploaded_file.filename != '':
         res = extract_text_from_file(uploaded_file)
-        if "text" in res: 
-            ocr_text = res["text"]
-            logger.info("OCR Başarılı")
+        if "text" in res: ocr_text = res["text"]
 
     kategori = request.form.get("kategori")
     aciklama = request.form.get("aciklama", "").strip()
@@ -204,69 +207,46 @@ def index():
     rules_feedback = check_rules(kategori, aciklama, ocr_text)
     rag_context = search_legal_docs(aciklama + " " + ocr_text, kategori)
     
-    if rules_feedback:
-        flash(f"SİSTEM UYARISI: {rules_feedback}", "warning")
+    if rules_feedback: flash(f"SİSTEM UYARISI: {rules_feedback}", "warning")
 
-    final_context = f"""
-    KULLANICI BEYANI: {aciklama}
-    BELGE İÇERİĞİ (OCR): {ocr_text}
-    SİSTEM UYARILARI (RULES): {rules_feedback}
-    MEVZUAT BİLGİSİ (RAG): {rag_context}
-    """
-    
+    final_context = f"KULLANICI: {aciklama}\nOCR: {ocr_text}\nRULES: {rules_feedback}\nRAG: {rag_context}"
     if kategori not in CATEGORIES: return redirect(url_for("index"))
     
     result = call_llm(final_context, aciklama, ocr_text, rules_feedback, rag_context)
     
-    if result.get("status") == "SORGU":
-        session["state"] = {
-            "kategori": kategori, 
-            "aciklama": final_context, 
-            "ad_soyad": current_user.username, 
-            "questions": result.get("questions", [])
-        }
-        return render_template("index.html", mode="questions", sorular=enumerate(result.get("questions", [])), ad_soyad=current_user.username)
-
     if result.get("status") == "DILEKCE_HAZIR":
         try:
+            # Maliyet Hesabı (GPT-4o-mini yaklaşık $0.15 / 1M token)
+            usage = result.get("usage", {})
+            tokens = usage.get("total_tokens", 0)
+            time_taken = usage.get("processing_time", 0.0)
+            cost = (tokens * 0.00000015) 
+
             new_petition = Petition(
                 category=CATEGORIES[kategori]["title"],
                 content=result.get("dilekce_metni", ""),
                 advice=result.get("hukuki_oneriler", ""),
                 ocr_data=ocr_text,
-                user_id=current_user.id
+                user_id=current_user.id,
+                # METRİKLER KAYDEDİLİYOR
+                processing_time=time_taken,
+                token_count=tokens,
+                cost_usd=cost
             )
             db.session.add(new_petition)
             db.session.commit()
             session['current_petition_id'] = new_petition.id
-        except Exception as e:
-            logger.error(f"DB Kayıt Hatası: {e}")
+        except Exception as e: logger.error(f"DB Hatası: {e}")
+
+    if result.get("status") == "SORGU":
+        session["state"] = {"kategori": kategori, "aciklama": final_context, "ad_soyad": current_user.username, "questions": result.get("questions", [])}
+        return render_template("index.html", mode="questions", sorular=enumerate(result.get("questions", [])), ad_soyad=current_user.username)
 
     session["result"] = result
     return redirect(url_for("sonuc"))
 
 def cevap_ver():
-    state = session.get("state")
-    if not state: return redirect(url_for("index"))
-    
-    result = get_mock_response(state.get("aciklama", ""), "Kullanıcı cevapları alındı.", "", "")
-    result["status"] = "DILEKCE_HAZIR" 
-    session["result"] = result
-    
-    try:
-        new_petition = Petition(
-            category=CATEGORIES[state["kategori"]]["title"],
-            content=result.get("dilekce_metni", ""),
-            advice=result.get("hukuki_oneriler", ""),
-            ocr_data="Cevaplar alındı",
-            user_id=current_user.id
-        )
-        db.session.add(new_petition)
-        db.session.commit()
-        session['current_petition_id'] = new_petition.id
-    except: pass
-
-    return redirect(url_for("sonuc"))
+    return redirect(url_for("sonuc")) # Basit akış
 
 @app.route("/sonuc")
 @login_required
@@ -276,12 +256,12 @@ def sonuc():
         petition = Petition.query.get(p_id)
         if petition and petition.user_id == current_user.id:
             data = {"hitap_makam": "KAYITLI DİLEKÇE", "dilekce_metni": petition.content, "hukuki_oneriler": petition.advice}
-            session['result'] = data
+            session['result'] = data 
             return render_template("sonuc.html", data=data, ad_soyad=current_user.username)
 
     data = session.get("result")
     if not data or not data.get("dilekce_metni"):
-        data = get_mock_response("Veri kurtarıldı.")
+        data = get_mock_response("Kurtarma")
         session['result'] = data
 
     return render_template("sonuc.html", data=data, ad_soyad=current_user.username)
@@ -290,11 +270,10 @@ def sonuc():
 @login_required
 def pdf():
     data = session.get("result")
-    if not data or not data.get("dilekce_metni"):
-        data = get_mock_response("PDF için veri kurtarıldı.")
-
+    if not data or not data.get("dilekce_metni"): data = get_mock_response("")
+    
     html = PETITION_HTML_TEMPLATE.format(
-        hitap_makam=data.get("hitap_makam", "İLGİLİ MAKAMA"),
+        hitap_makam=data.get("hitap_makam", "MAKAM"),
         dilekce_metni=data.get("dilekce_metni", "").replace("\n", "<br>"),
         hukuki_oneriler=data.get("hukuki_oneriler", "").replace("\n", "<br>"),
         tarih=datetime.now().strftime("%d.%m.%Y"),
@@ -303,7 +282,7 @@ def pdf():
     try:
         pdf_bytes = html_to_pdf_playwright(html)
         return send_file(io.BytesIO(pdf_bytes), as_attachment=True, download_name="Dilekce.pdf", mimetype="application/pdf")
-    except: return "PDF Oluşturma Hatası", 500
+    except: return "PDF Hatası", 500
 
 @app.template_filter('strftime')
 def _jinja2_filter_strftime(date, fmt=None):
