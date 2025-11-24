@@ -1,30 +1,38 @@
-# Python 3.12 Slim (Hafif) İmajı Kullan
+# Python 3.12 Slim (En Hafif Sürüm)
 FROM python:3.12-slim
 
-# 1. Gerekli Sistem Kütüphanelerini Kur
-# Tesseract (OCR), Poppler (PDF İşleme) ve Grafik kütüphaneleri
-RUN apt-get update && apt-get install -y \
+# Bellek tasarrufu için ayarlar
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PIP_NO_CACHE_DIR=1
+
+# 1. Sistem Kütüphanelerini Kur (Hata verirse devam etmemesi için 'set -e')
+# DÜZELTME: 'libgl1-mesa-glx' yerine 'libgl1' yazıldı.
+RUN set -e && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
     tesseract-ocr \
     tesseract-ocr-tur \
     poppler-utils \
-    libgl1-mesa-glx \
+    libgl1 \
     libglib2.0-0 \
+    wget \
+    gnupg \
     && rm -rf /var/lib/apt/lists/*
 
-# Çalışma dizinini ayarla
+# Çalışma dizini
 WORKDIR /app
 
-# Gereksinimleri kopyala ve kur
+# 2. Önce sadece requirements'ı kopyala ve kur (Cache avantajı)
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
 
-# Playwright (PDF Motoru) için tarayıcıları kur
-RUN playwright install chromium
-RUN playwright install-deps
+# 3. Playwright'ı en hafif haliyle kur (Sadece Chromium)
+RUN playwright install chromium --with-deps
 
-# Proje dosyalarını kopyala
+# 4. Kalan dosyaları kopyala
 COPY . .
 
-# 2. Uygulamayı Başlat (Gunicorn ile)
-# Render 5000 portunu beklemese de standart olarak belirtiyoruz
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+# 5. Başlat (Zaman aşımı süresini 120 saniyeye çıkardık)
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--timeout", "120", "--workers", "1", "app:app"]
