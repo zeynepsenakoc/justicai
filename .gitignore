@@ -9,3 +9,7 @@ instance/
 *.db
 *.sqlite3
 uploads/
+*.pyc
+*.log
+chroma_db/
+legal_docs/vectors_cache.pkl

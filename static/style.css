@@ -128,3 +128,47 @@ h1, h2, h3, h4, .navbar-brand {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* Loading Adımları İçin Geçiş Efekti */
+.step-item {
+    font-size: 0.95rem;
+    transition: all 0.4s ease;
+}
+.transition {
+    animation: slideRight 0.4s ease forwards;
+}
+@keyframes slideRight {
+    from { transform: translateX(-10px); opacity: 0.5; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* --- YENİ EKLENECEK KISIM (style.css en altı) --- */
+
+/* Yükleme Ekranı Geçişleri */
+.fade-out-content {
+    opacity: 0;
+    transform: scale(0.98);
+    transition: all 0.4s ease-in-out;
+    pointer-events: none; /* Tıklamayı engelle */
+}
+
+.fade-in-loader {
+    animation: smoothAppear 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes smoothAppear {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Loading ekranındaki ikonun hafifçe parlaması için */
+.pulse-icon {
+    animation: pulseGlow 2s infinite ease-in-out;
+    color: var(--primary);
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}

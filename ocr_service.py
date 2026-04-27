@@ -26,7 +26,7 @@ def is_file_safe(file_path):
         return False
 
 def extract_text_from_file(file_storage):
-    # Güvenli dosya adı oluştur
+
     ext = os.path.splitext(file_storage.filename)[1].lower()
     unique_filename = f"{uuid.uuid4()}{ext}"
     file_path = os.path.join(UPLOAD_FOLDER, unique_filename)
@@ -34,15 +34,14 @@ def extract_text_from_file(file_storage):
     try:
         file_storage.save(file_path)
         
-        # 1. Boyut Kontrolü
+     
         if os.path.getsize(file_path) > MAX_FILE_SIZE:
             os.remove(file_path)
             return {
                 "error": "Dosya çok büyük (Max 16MB).",
                 "suggestion": "Lütfen dosya boyutunu küçültüp tekrar deneyin veya PDF sayfalarını ayırın."
             }
-            
-        # 2. Format/Güvenlik Kontrolü
+   
         if not is_file_safe(file_path):
             os.remove(file_path)
             return {
@@ -52,7 +51,7 @@ def extract_text_from_file(file_storage):
 
         text_result = ""
         
-        # 3. OCR İşlemi
+     
         if file_path.endswith('.pdf'):
             try:
                 pages = convert_from_path(file_path)
@@ -60,7 +59,7 @@ def extract_text_from_file(file_storage):
                     text_result += pytesseract.image_to_string(page, lang='tur') + "\n"
             except Exception as e:
                 logger.error(f"PDF Okuma Hatası: {e}")
-                # PDF bozuksa bile devam etme, hata dön
+             
                 if os.path.exists(file_path): os.remove(file_path)
                 return {"error": "PDF dosyası okunamadı.", "suggestion": "Dosya şifreli veya bozuk olabilir. Ekran görüntüsü alıp yüklemeyi deneyin."}
         else:
@@ -70,10 +69,10 @@ def extract_text_from_file(file_storage):
                 if os.path.exists(file_path): os.remove(file_path)
                 return {"error": "Görüntü dosyası bozuk.", "suggestion": "Farklı bir formatta (JPG/PNG) tekrar deneyin."}
 
-        # Temizlik
+  
         if os.path.exists(file_path): os.remove(file_path)
         
-        # 4. Boş Metin Kontrolü
+    
         if not text_result.strip():
             return {
                 "error": "Belgeden okunabilir bir metin çıkarılamadı.",
@@ -83,7 +82,7 @@ def extract_text_from_file(file_storage):
         return {"text": text_result.strip()}
 
     except Exception as e:
-        # Beklenmeyen genel hata
+       
         if os.path.exists(file_path): os.remove(file_path)
         logger.error(f"Kritik OCR Hatası: {e}")
         return {

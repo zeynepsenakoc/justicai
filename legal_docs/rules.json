@@ -1,0 +1,91 @@
+{
+    "metadata": {
+      "versiyon": "2.0",
+      "guncellenme_tarihi": "25.11.2025",
+      "kaynaklar": [
+        "Resmi Gazete Tebliğleri (20.12.2024)",
+        "Ticaret Bakanlığı Tüketici Koruma Yönetmeliği",
+        "TÜİK TÜFE Verileri (Ekim 2025: %71.5)",
+        "Yargıtay Kararları (2024-2025)",
+        "TCK, TBK, İş Kanunu Güncellemeleri"
+      ],
+      "kullanım_notu": "Bu veritabanı, LLM prompt'una entegre edilerek otomatik uyarılar üretir. Limitler yıllık olarak güncellenir."
+    },
+    "tuketici_haklari": {
+      "parasal_sinir": {
+        "2025_limit_ilce": 149000,
+        "2025_limit_il": 447000,
+        "uyari_mesaji": "⚠️ GÖREV UYARISI: Tespit edilen tutar ({deger} TL), 2025 İlçe Tüketici Hakem Heyeti sınırını ({limit_ilce} TL) aşmaktadır. Bu durumda İl Hakem Heyeti'ne veya Tüketici Mahkemesi'ne başvurmanız gerekir (Arabuluculuk zorunludur)."
+      },
+      "cayma_hakki": {
+        "gun": 14,
+        "uyari_mesaji": "⚠️ SÜRE AŞIMI RİSKİ: Mesafeli satışlarda (online/telefon) cayma hakkı 14 gündür. {fark_gun} gün geçmişse hakkınız düşmüş olabilir."
+      },
+      "ayipli_mal": {
+        "zaman_asimi_yil": 2,
+        "uyari_mesaji": "⚠️ ZAMANAŞIMI UYARISI: Ayıplı mal sorumluluğu teslim tarihinden 2 yıldır. Bu süre dolduysa talep reddedilebilir."
+      },
+      "zorunlu_kelimeler": ["fatura", "fiş", "sözleşme", "garanti"],
+      "eksik_belge_mesaji": "⚠️ DELİL EKSİKLİĞİ: Tüketici başvurularında Fatura, Fiş veya Sözleşme ibrazı ispat açısından kritiktir. Belgenizde bu kelimeler tespit edilemedi."
+    },
+    "trafik_cezasi": {
+      "itiraz_suresi": {
+        "gun": 15,
+        "uyari_mesaji": "⚠️ HAK DÜŞÜRÜCÜ SÜRE: Trafik cezasına itiraz süresi, tebliğden itibaren 15 gündür. Tespit edilen süre farkı: {fark_gun} gün."
+      },
+      "erken_odeme": {
+        "gun": 30,
+        "uyari_mesaji": "💡 İNDİRİM FIRSATI: Tebliğden 30 gün içinde öderseniz %25 indirim uygulanır. İtiraz etseniz bile ödeme yapabilirsiniz (İptal olursa iade alırsınız)."
+      },
+      "zorunlu_kelimeler": ["tebligat", "tutanak", "plaka"],
+      "eksik_belge_mesaji": "⚠️ EKSİK BİLGİ: İtiraz dilekçesinde Ceza Tutanağı Seri No ve Tebliğ Tarihi mutlaka yer almalıdır."
+    },
+    "is_hukuku": {
+      "ise_iade": {
+        "sure_gun": 30,
+        "uyari_mesaji": "⚠️ DAVA AÇMA SÜRESİ: İşe iade davası, fesih bildiriminden itibaren 1 ay içinde ARABULUCUYA başvurularak başlatılmalıdır. {fark_gun} gün geçmişse hak düşmüş olabilir."
+      },
+      "devamsizlik": {
+        "uyari_mesaji": "⚠️ HAKLI FESİH RİSKİ: İşveren, bir ay içinde 3 iş günü mazeretsiz devamsızlık yapan işçiyi tazminatsız işten çıkarabilir."
+      },
+      "zorunlu_kelimeler": ["sgk", "bordro", "fesih"],
+      "eksik_belge_mesaji": "⚠️ BELGE EKSİKLİĞİ: İş davalarında SGK dökümü, maaş bordrosu ve fesih bildirimi kritik delillerdir."
+    },
+    "kira": {
+      "tahliye_ihtari": {
+        "uyari_mesaji": "⚠️ USUL UYARISI: Tahliye davalarında, sözleşme bitiminden en az 15 gün önce veya fesih dönemlerine uygun ihtarname çekilmiş olması dava şartıdır."
+      },
+      "kira_artisi": {
+        "uyari_mesaji": "💡 KİRA ARTIŞI: Konut kiralarında %25 sınırı kalkmıştır. Artış oranı TÜFE (12 aylık ortalama) üzerinden hesaplanır. %{oran} üzerindeki artışlar için itiraz hakkınız vardır."
+      },
+      "zorunlu_kelimeler": ["kontrat", "dekont", "iban"],
+      "eksik_belge_mesaji": "⚠️ DELİL UYARISI: Kira uyuşmazlıklarında yazılı Kira Sözleşmesi ve Ödeme Dekontları (IBAN) en önemli ispat araçlarıdır."
+    },
+    "dolandiricilik": {
+      "savcilik_sikayet": {
+        "zaman_asimi_ay": 6,
+        "uyari_mesaji": "⚠️ ŞİKAYET SÜRESİ: Takibi şikayete bağlı suçlarda, fiili ve faili öğrendiğiniz tarihten itibaren 6 ay içinde şikayetçi olmalısınız."
+      },
+      "zorunlu_kelimeler": ["iban", "dekont", "telefon"],
+      "eksik_belge_mesaji": "⚠️ KRİTİK EKSİKLİK: Dolandırıcılık iddialarında şüphelinin tespiti için IBAN, Telefon Numarası veya Dekont bilgileri dilekçede mutlaka yer almalıdır."
+    },
+    "bilişim_suclari": {
+      "url_tespiti": {
+        "uyari_mesaji": "⚠️ URL TESPİTİ: Bilişim suçlarında (Hakaret vb.) sadece ekran görüntüsü yetersiz kalabilir. İlgili içeriğin tam URL adresini (Link) dilekçeye eklemeniz teknik tespit (IP) için önemlidir."
+      }
+    },
+    "kargo": {
+        "hasar_kontrol": {
+            "uyari_mesaji": "⚠️ HASAR TESPİTİ: Kargo teslim alınırken hasar tutanağı tutulmadıysa veya açılış videosu yoksa tazminat talebi reddedilebilir."
+        },
+        "zorunlu_kelimeler": ["takip_no", "tutanak"],
+        "eksik_belge_mesaji": "⚠️ EKSİK BELGE: Kargo takip numarası ve varsa hasar tespit tutanağı dilekçeye eklenmelidir."
+    },
+    "bankacilik": {
+        "haksiz_ucret": {
+            "uyari_mesaji": "⚠️ İTİRAZ SÜRESİ: Hatalı veya izinsiz harcamalar için bankaya 30 gün içinde yazılı itirazda bulunmanız önerilir."
+        },
+        "zorunlu_kelimeler": ["dekont", "hesap_ozeti"],
+        "eksik_belge_mesaji": "⚠️ BELGE GEREKLİ: Harcama itirazlarında ilgili döneme ait hesap özeti veya dekont sunulmalıdır."
+    }
+  }

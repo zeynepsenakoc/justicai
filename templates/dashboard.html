@@ -2,49 +2,110 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Dilekçelerim</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dilekçelerim - JusticAI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="bg-light">
+<body>
 
-<nav class="navbar navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark mb-5 shadow-sm" style="background-color: var(--primary);">
   <div class="container">
-    <a class="navbar-brand" href="/"><i class="fas fa-balance-scale"></i> Hukuk AI</a>
-    <div>
-        <span class="text-white me-3">Hoşgeldin, {{ current_user.username }}</span>
-        <a href="/" class="btn btn-light btn-sm"><i class="fas fa-plus"></i> Yeni Dilekçe</a>
-        <a href="/logout" class="btn btn-outline-light btn-sm ms-2">Çıkış</a>
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="{{ url_for('static', filename='logo.svg') }}" alt="Logo" style="height: 40px; background: white; padding: 4px; border-radius: 6px; margin-right: 10px;">
+      <span style="font-family: 'Playfair Display', serif;">JusticAI</span>
+    </a>
+    <div class="d-flex align-items-center">
+        <a href="/" class="btn btn-outline-light btn-sm rounded-pill me-2"><i class="fas fa-plus"></i> Yeni</a>
+        <a href="/logout" class="btn btn-sm text-warning"><i class="fas fa-sign-out-alt"></i></a>
     </div>
   </div>
 </nav>
 
-<div class="container py-5">
-    <h2 class="mb-4"><i class="fas fa-history"></i> Geçmiş Dilekçelerim</h2>
+<div class="container py-5 fade-in-up">
+    
+    <!-- Mesajlar -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} shadow-sm border-0 rounded-3 mb-4">
+              <i class="fas fa-info-circle me-2"></i> {{ message }}
+              <button type="button" class="btn-close float-end" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold" style="color: var(--primary);">Geçmiş Başvurular</h2>
+        <span class="badge bg-secondary rounded-pill">{{ petitions|length }} Belge</span>
+    </div>
     
     {% if petitions %}
-    <div class="row">
+    <div class="row g-4">
         {% for p in petitions %}
-        <div class="col-md-6 mb-4">
-            <div class="card shadow-sm h-100">
-                <div class="card-header bg-white fw-bold text-primary">
-                    {{ p.category }}
-                </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm hover-effect">
                 <div class="card-body">
-                    <p class="card-text text-muted small">{{ p.date_created.strftime('%d.%m.%Y %H:%M') }}</p>
-                    <p class="card-text">{{ p.content[:150] }}...</p>
-                    <a href="/sonuc?id={{ p.id }}" class="btn btn-outline-primary btn-sm">
-                        <i class="fas fa-eye"></i> Görüntüle & İndir
-                    </a>
+                    
+                    <!-- Başlık ve Durum Rozeti -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge {{ 'bg-success' if p.status == 'İletildi' else 'bg-light text-primary border' }}">
+                            {{ p.category }} 
+                            {% if p.status == 'İletildi' %} <i class="fas fa-check-circle ms-1"></i> {% endif %}
+                        </span>
+                        <small class="text-muted">{{ p.date_created.strftime('%d.%m.%Y') }}</small>
+                    </div>
+
+                    <!-- Takip No Varsa Göster -->
+                    {% if p.tracking_number %}
+                    <div class="alert alert-success py-1 px-2 mb-3 small text-center border-success" style="background-color: #f0fdf4;">
+                        <i class="fas fa-barcode me-1"></i> Takip No: <strong>{{ p.tracking_number }}</strong>
+                    </div>
+                    {% endif %}
+
+                    <h5 class="card-title text-truncate mb-3" style="color: var(--secondary);">{{ p.content[:35] }}...</h5>
+                    
+                    <div class="d-grid gap-2">
+                        <!-- Görüntüle ve Düzenle -->
+                        <div class="btn-group">
+                            <a href="{{ url_for('sonuc', id=p.id) }}" class="btn btn-outline-primary btn-sm"><i class="fas fa-eye"></i></a>
+                            <!-- Gönderildiyse düzenlemeyi kapat -->
+                            {% if p.status != 'İletildi' %}
+                                <a href="{{ url_for('edit_petition', petition_id=p.id) }}" class="btn btn-outline-warning btn-sm text-dark"><i class="fas fa-edit"></i></a>
+                            {% else %}
+                                <button class="btn btn-outline-secondary btn-sm" disabled><i class="fas fa-lock"></i></button>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- e-Devlet Butonu (Sadece gönderilmemişse çıkar) -->
+                        {% if not p.tracking_number %}
+                        <a href="{{ url_for('simulate_edevlet', petition_id=p.id) }}" class="btn btn-danger btn-sm text-white" onclick="return confirm('Bu işlem sadece bir simülasyondur. Onaylıyor musunuz?')">
+                            <i class="fas fa-paper-plane me-1"></i> e-Devlet'e Gönder (Simüle)
+                        </a>
+                        {% endif %}
+
+                        <!-- Benzerleri Bul -->
+                        <a href="{{ url_for('similar_petitions', petition_id=p.id) }}" class="btn btn-light btn-sm text-secondary border">
+                            <i class="fas fa-magic me-1 text-warning"></i> Benzerleri Bul
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
     {% else %}
-        <div class="alert alert-info">Henüz hiç dilekçe oluşturmadınız.</div>
+        <div class="text-center py-5">
+            <i class="fas fa-folder-open fa-4x text-muted mb-3 opacity-25"></i>
+            <p class="text-muted">Henüz kaydedilmiş bir dilekçeniz yok.</p>
+            <a href="/" class="btn btn-primary mt-2 shadow-sm">İlk Dilekçeni Oluştur</a>
+        </div>
     {% endif %}
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

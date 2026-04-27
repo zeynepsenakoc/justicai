@@ -1,6 +1,7 @@
 Flask
 flask-login
 flask-sqlalchemy
+flask-mail
 requests
 playwright
 pytesseract
@@ -11,3 +12,6 @@ werkzeug
 python-dotenv
 gunicorn
 Flask-Limiter
+chromadb
+openai
+tiktoken

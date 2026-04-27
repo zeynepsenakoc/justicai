@@ -2,126 +2,353 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Justica AI - Sistem Metrikleri</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yönetim Paneli - JusticAI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        body { background-color: #f8f9fa; }
-        .card { border: none; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .card:hover { transform: translateY(-5px); }
-        .icon-box { font-size: 2rem; opacity: 0.8; }
-        .metric-value { font-size: 2.5rem; font-weight: bold; }
-        .metric-label { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        /* Admin Paneline Özel Kart Stilleri */
+        .metric-card {
+            border: none;
+            border-radius: 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .metric-card .icon-box {
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+            font-size: 4rem;
+            opacity: 0.2;
+        }
+        /* Renk Varyasyonları */
+        .bg-navy-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        .bg-gold-gradient { background: linear-gradient(135deg, #d97706 0%, #fbbf24 100%); color: #0f172a !important; }
+        .bg-success-gradient { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        
+        /* Metrik Yazıları */
+        .metric-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; font-weight: 600; }
+        .metric-value { font-size: 2.5rem; font-weight: 700; line-height: 1.2; }
+        .metric-sub { font-size: 0.8rem; opacity: 0.7; margin-top: 5px; display: block; }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark mb-5">
+<nav class="navbar navbar-expand-lg navbar-dark mb-5 shadow-sm" style="background-color: var(--primary);">
   <div class="container">
-    <span class="navbar-brand fw-bold"><i class="fas fa-chart-line"></i> Justica AI | Performans Paneli</span>
-    <a href="/" class="btn btn-outline-light btn-sm">Siteye Dön</a>
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="{{ url_for('static', filename='logo.svg') }}" alt="JusticAI Logo" style="height: 40px; background: white; padding: 4px; border-radius: 6px; margin-right: 10px;">
+      <span style="font-family: 'Playfair Display', serif; letter-spacing: 1px;">Yönetim Paneli</span>
+    </a>
+    <div class="d-flex align-items-center">
+        <a href="/" class="btn btn-outline-light btn-sm rounded-pill px-3 me-2">
+            <i class="fas fa-arrow-left me-1"></i> Siteye Dön
+        </a>
+        <a href="/logout" class="btn btn-sm text-warning fw-bold"><i class="fas fa-sign-out-alt"></i> Çıkış</a>
+    </div>
   </div>
 </nav>
 
-<div class="container">
-    <!-- 1. Satır: Kullanıcı ve İşlem Hacmi -->
-    <div class="row mb-4">
-        <div class="col-md-6">
-            <div class="card bg-primary text-white h-100">
-                <div class="card-body d-flex align-items-center justify-content-between">
+<div class="container pb-5 fade-in-up">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold" style="color: var(--primary);">Sistem Genel Bakış</h2>
+        <span class="badge bg-secondary rounded-pill px-3 py-2">Canlı Veriler</span>
+    </div>
+
+    <!-- 1. SATIR: ANA METRİKLER (3 KART YAN YANA) -->
+    <div class="row g-4 mb-4">
+        <!-- Toplam Kullanıcı -->
+        <div class="col-md-4">
+            <div class="card metric-card bg-navy-gradient h-100 p-4">
+                <div class="d-flex justify-content-between align-items-start position-relative z-1">
                     <div>
-                        <h6 class="metric-label">Toplam Kullanıcı</h6>
-                        <div class="metric-value">{{ total_users }}</div>
+                        <span class="metric-label">Toplam Kullanıcı</span>
+                        <div class="metric-value mt-2">{{ total_users }}</div>
+                        <span class="metric-sub">Kayıtlı aktif üye sayısı</span>
                     </div>
                     <div class="icon-box"><i class="fas fa-users"></i></div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card bg-success text-white h-100">
-                <div class="card-body d-flex align-items-center justify-content-between">
+        <!-- Oluşturulan Dilekçe -->
+        <div class="col-md-4">
+            <div class="card metric-card bg-gold-gradient h-100 p-4">
+                <div class="d-flex justify-content-between align-items-start position-relative z-1">
                     <div>
-                        <h6 class="metric-label">Oluşturulan Dilekçe</h6>
-                        <div class="metric-value">{{ total_petitions }}</div>
+                        <span class="metric-label" style="color: #0f172a;">Oluşturulan Dilekçe</span>
+                        <div class="metric-value mt-2" style="color: #0f172a;">{{ total_petitions }}</div>
+                        <span class="metric-sub" style="color: #0f172a;">Veritabanındaki toplam belge</span>
                     </div>
-                    <div class="icon-box"><i class="fas fa-file-alt"></i></div>
+                    <div class="icon-box" style="color: #0f172a;"><i class="fas fa-file-signature"></i></div>
+                </div>
+            </div>
+        </div>
+        <!-- YENİ: Müşteri Memnuniyeti -->
+        <div class="col-md-4">
+            <div class="card metric-card bg-success-gradient h-100 p-4">
+                <div class="d-flex justify-content-between align-items-start position-relative z-1">
+                    <div>
+                        <span class="metric-label">Müşteri Memnuniyeti</span>
+                        <div class="metric-value mt-2">%{{ satisfaction_rate }}</div>
+                        <span class="metric-sub">{{ total_feedbacks }} geri bildirim üzerinden</span>
+                    </div>
+                    <div class="icon-box"><i class="fas fa-smile"></i></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 2. Satır: PERFORMANS METRİKLERİ (YENİ!) -->
-    <div class="row mb-5">
+    <!-- CANLI SİSTEM SAĞLIK KONTROLÜ -->
+    <div class="card shadow-sm border-0 mb-5 bg-white">
+        <div class="card-body p-4 d-flex align-items-center justify-content-between">
+            <div>
+                <h5 class="fw-bold text-primary mb-1"><i class="fas fa-stethoscope me-2"></i> Canlı Sistem Tanılama (System Diagnostics)</h5>
+                <p class="text-muted small mb-0">Arka uç servislerini (AI, OCR, DB, Privacy) anlık olarak test eder ve raporlar.</p>
+            </div>
+            <button onclick="runSystemTests()" id="testBtn" class="btn btn-outline-primary rounded-pill px-4 fw-bold">
+                <i class="fas fa-play me-2"></i> Testleri Başlat
+            </button>
+        </div>
+        <div id="testResultsPanel" class="card-footer bg-light border-top-0 p-4" style="display: none;">
+            <div class="d-flex align-items-center mb-3">
+                <div class="spinner-border spinner-border-sm text-primary me-2" id="testSpinner" role="status"></div>
+                <span class="text-primary fw-bold" id="testStatusText">Modüller test ediliyor...</span>
+            </div>
+            <div id="testOutput"></div>
+        </div>
+    </div>
+
+    <!-- 2. SATIR: PERFORMANS METRİKLERİ -->
+    <h5 class="fw-bold mb-3 text-secondary"><i class="fas fa-tachometer-alt me-2"></i> Performans & Maliyet</h5>
+    <div class="row g-4 mb-5">
         <div class="col-md-4">
-            <div class="card bg-info text-white h-100">
+            <div class="card shadow-sm border-0 h-100" style="border-left: 5px solid var(--primary) !important;">
                 <div class="card-body">
-                    <h6 class="metric-label">Ort. İşlem Süresi</h6>
-                    <div class="metric-value">{{ avg_time }} <span class="fs-6">sn</span></div>
-                    <small class="opacity-75">OCR + RAG + AI Analiz Süresi</small>
+                    <h6 class="text-uppercase text-muted small fw-bold mb-2">Ort. İşlem Süresi</h6>
+                    <div class="d-flex align-items-baseline">
+                        <span class="display-6 fw-bold text-dark">{{ avg_time }}</span>
+                        <span class="text-muted ms-2">saniye</span>
+                    </div>
+                    <small class="text-secondary mt-2 d-block"><i class="fas fa-clock me-1"></i> OCR + RAG + AI Analizi</small>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card bg-warning text-dark h-100">
+            <div class="card shadow-sm border-0 h-100" style="border-left: 5px solid var(--accent) !important;">
                 <div class="card-body">
-                    <h6 class="metric-label">Toplam Token</h6>
-                    <div class="metric-value">{{ total_tokens }}</div>
-                    <small class="opacity-75">LLM Girdi + Çıktı Hacmi</small>
+                    <h6 class="text-uppercase text-muted small fw-bold mb-2">Toplam Token</h6>
+                    <div class="d-flex align-items-baseline">
+                        <span class="display-6 fw-bold text-dark">{{ total_tokens }}</span>
+                    </div>
+                    <small class="text-secondary mt-2 d-block"><i class="fas fa-database me-1"></i> LLM Girdi/Çıktı Hacmi</small>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card bg-danger text-white h-100">
+            <div class="card shadow-sm border-0 h-100" style="border-left: 5px solid #ef4444 !important;">
                 <div class="card-body">
-                    <h6 class="metric-label">Tahmini Maliyet</h6>
-                    <div class="metric-value">${{ total_cost }}</div>
-                    <small class="opacity-75">OpenAI API Harcaması</small>
+                    <h6 class="text-uppercase text-muted small fw-bold mb-2">Tahmini Maliyet</h6>
+                    <div class="d-flex align-items-baseline">
+                        <span class="text-success fw-bold me-1">$</span>
+                        <span class="display-6 fw-bold text-dark">{{ total_cost }}</span>
+                    </div>
+                    <small class="text-secondary mt-2 d-block"><i class="fas fa-dollar-sign me-1"></i> OpenAI API Harcaması</small>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Grafik Alanı -->
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="card">
-                <div class="card-header bg-white fw-bold py-3">
-                    <i class="fas fa-chart-pie"></i> Kategori Bazlı Başvuru Dağılımı
-                </div>
-                <div class="card-body">
-                    <canvas id="petitionChart" style="max-height: 400px;"></canvas>
-                </div>
+    <!-- 3. SATIR: GRAFİK -->
+    <div class="card shadow-lg border-0 mb-5">
+        <div class="card-header bg-white py-3 border-bottom">
+            <h5 class="mb-0 fw-bold" style="color: var(--primary);">
+                <i class="fas fa-chart-pie me-2" style="color: var(--accent);"></i> Kategori Bazlı Başvuru Dağılımı
+            </h5>
+        </div>
+        <div class="card-body p-4">
+            <div style="height: 400px; width: 100%;">
+                <canvas id="petitionChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. SATIR: GERİ BİLDİRİMLER TABLOSU (YENİ) -->
+    <div class="card shadow-lg border-0 mt-4">
+        <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-bold" style="color: var(--primary);">
+                <i class="fas fa-comments me-2" style="color: var(--accent);"></i> Son Geri Bildirimler
+            </h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0 align-middle">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-4">Tarih</th>
+                            <th>Durum</th>
+                            <th>Yorum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if feedbacks %}
+                            {% for f in feedbacks %}
+                            <tr>
+                                <td class="ps-4 text-muted small">{{ f.created_at.strftime('%d.%m.%Y %H:%M') }}</td>
+                                <td>
+                                    {% if f.rating %}
+                                        <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">
+                                            <i class="fas fa-thumbs-up me-1"></i> Olumlu
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill">
+                                            <i class="fas fa-thumbs-down me-1"></i> Olumsuz
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-secondary">
+                                    {% if f.comment %}
+                                        {{ f.comment }}
+                                    {% else %}
+                                        <span class="text-muted fst-italic">- Yorum yok -</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="3" class="text-center py-4 text-muted">
+                                    Henüz geri bildirim bulunmuyor.
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Veri Aktarımı -->
-<script id="chart-labels" type="application/json">{{ labels | tojson | safe }}</script>
-<script id="chart-data" type="application/json">{{ data | tojson | safe }}</script>
+<!-- Veri Aktarımı (En Güvenli Yöntem: Script Tag) -->
+<!-- JSON verisini doğrudan script tag içeriğine yazıyoruz -->
+<script id="chart-labels-json" type="application/json">
+    {{ labels | tojson | safe }}
+</script>
+<script id="chart-data-json" type="application/json">
+    {{ data | tojson | safe }}
+</script>
 
 <script>
-    const labelsData = JSON.parse(document.getElementById('chart-labels').textContent);
-    const chartData = JSON.parse(document.getElementById('chart-data').textContent);
+    // --- GRAFİK AYARLARI ---
+    let labelsData = [];
+    let chartValues = [];
+
+    try {
+        // Script taglerinin içeriğini oku ve JSON.parse ile işle
+        const labelsEl = document.getElementById('chart-labels-json');
+        const dataEl = document.getElementById('chart-data-json');
+        
+        if (labelsEl && labelsEl.textContent) {
+            labelsData = JSON.parse(labelsEl.textContent);
+        }
+        if (dataEl && dataEl.textContent) {
+            chartValues = JSON.parse(dataEl.textContent);
+        }
+    } catch (e) {
+        console.error("Grafik verisi okunamadı:", e);
+    }
+    
     const ctx = document.getElementById('petitionChart').getContext('2d');
+    
+    const brandColors = [
+        '#0f172a', '#fbbf24', '#334155', '#d97706', '#10b981', '#ef4444', '#6366f1'
+    ];
+
     new Chart(ctx, {
-        type: 'bar', 
+        type: 'bar',
         data: {
             labels: labelsData,
             datasets: [{
                 label: 'Başvuru Sayısı',
-                data: chartData,
-                backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
+                data: chartValues,
+                backgroundColor: brandColors,
+                borderRadius: 6,
+                borderWidth: 0,
+                barThickness: 40,
+                maxBarThickness: 60
             }]
         },
         options: {
             responsive: true,
-            scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#0f172a',
+                    titleFont: { family: 'Inter', size: 14 },
+                    bodyFont: { family: 'Inter', size: 13 },
+                    padding: 10,
+                    cornerRadius: 8,
+                    displayColors: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: '#f1f5f9', borderDash: [5, 5] },
+                    ticks: { stepSize: 1, font: { family: 'Inter' } }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { font: { family: 'Inter', weight: 'bold' } }
+                }
+            }
         }
     });
+
+    // --- SİSTEM TESTLERİ İÇİN SCRİPT ---
+    function runSystemTests() {
+        const btn = document.getElementById('testBtn');
+        const panel = document.getElementById('testResultsPanel');
+        const output = document.getElementById('testOutput');
+        const spinner = document.getElementById('testSpinner');
+        const statusText = document.getElementById('testStatusText');
+
+        // UI Hazırla
+        btn.disabled = true;
+        panel.style.display = 'block';
+        output.innerHTML = '';
+        spinner.style.display = 'inline-block';
+        statusText.innerText = "Test paketleri çalıştırılıyor (Unit Tests)...";
+        statusText.className = "text-primary fw-bold";
+
+        // Sunucuya İstek At
+        fetch('/run_tests_web')
+            .then(response => response.text())
+            .then(html => {
+                spinner.style.display = 'none';
+                statusText.innerText = "Analiz Tamamlandı.";
+                output.innerHTML = html;
+                btn.disabled = false;
+            })
+            .catch(err => {
+                spinner.style.display = 'none';
+                statusText.innerText = "Bağlantı Hatası!";
+                statusText.className = "text-danger fw-bold";
+                output.innerHTML = `<div class="alert alert-danger">${err}</div>`;
+                btn.disabled = false;
+            });
+    }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
